@@ -101,17 +101,10 @@ int main(int argc, const char **argv) {
 
     res.set_content(body, "text/plain");
   });
-
-  svr.set_error_handler([](const Request & /*req*/, Response &res) {
-    const char *fmt = "<p>Error Status: <span style='color:red;'>%d</span></p>";
-    char buf[BUFSIZ];
-    snprintf(buf, sizeof(buf), fmt, res.status);
-    res.set_content(buf, "text/html");
-  });
-
+/*
   svr.set_logger(
       [](const Request &req, const Response &res) { cout << log(req, res); });
-
+*/
   auto port = 8080;
   if (argc > 1) { port = atoi(argv[1]); }
 
