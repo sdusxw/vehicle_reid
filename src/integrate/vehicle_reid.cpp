@@ -93,7 +93,9 @@ int main(int argc, const char **argv) {
     cout << "usage: simplesvr [PORT] [DIR]" << endl;
     return 1;
   }
-    
+
+  Server svr;
+
   svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
     auto body = dump_headers(req.headers) + dump_multipart_files(req.files);
 
