@@ -97,8 +97,8 @@ int main(int argc, const char **argv) {
   Server svr;
 
   svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
-    auto body = dump_headers(req.headers) + dump_multipart_files(req.files);
-
+    //auto body = dump_headers(req.headers) + dump_multipart_files(req.files);
+      auto body = "OK";
     res.set_content(body, "text/plain");
   });
 /*
