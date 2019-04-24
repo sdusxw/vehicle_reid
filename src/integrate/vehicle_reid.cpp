@@ -9,9 +9,6 @@
 #include <httplib.h>
 #include <iostream>
 
-#define SERVER_CERT_FILE "./cert.pem"
-#define SERVER_PRIVATE_KEY_FILE "./key.pem"
-
 using namespace httplib;
 using namespace std;
 
@@ -96,14 +93,8 @@ int main(int argc, const char **argv) {
     cout << "usage: simplesvr [PORT] [DIR]" << endl;
     return 1;
   }
-
-#ifdef CPPHTTPLIB_OPENSSL_SUPPORT
-  SSLServer svr(SERVER_CERT_FILE, SERVER_PRIVATE_KEY_FILE);
-#else
-  Server svr;
-#endif
-
-  svr.Post("/multipart", [](const Request &req, Response &res) {
+    
+  svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
     auto body = dump_headers(req.headers) + dump_multipart_files(req.files);
 
     res.set_content(body, "text/plain");
@@ -129,7 +120,7 @@ int main(int argc, const char **argv) {
 
   cout << "The server started at port " << port << "...";
 
-  svr.listen("localhost", port);
+  svr.listen("0.0.0.0", port);
 
   return 0;
 }
