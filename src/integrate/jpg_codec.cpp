@@ -1,4 +1,4 @@
-#include "boon_jpg_codec.h"
+#include "jpg_codec.h"
 
 #include <iostream>
 #include <fstream>
