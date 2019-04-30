@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <httplib.h>
 #include <iostream>
+#include <fstream>
 #include <json/json.h>
 
 using namespace httplib;
@@ -23,6 +24,25 @@ string dump_headers(const Headers &headers) {
   }
 
   return s;
+}
+
+void save_files(const Request &req, const MultipartFiles &files) {
+    for (const auto &x : files) {
+        const auto &name = x.first;
+        const auto &file = x.second;
+        if(name != "file") continue;
+        auto file_content = req.body.substr(file.offset, file.length);
+        ofstream output( "test_save.jpg", ios::out | ios::binary );
+        if( ! output )
+        {
+            cerr << "Open output file error!" << endl;
+            return;
+        }
+        
+        output.write ((char *) file_content.c_str(), file.length );
+
+        output.close();
+        
 }
 
 string dump_multipart_files(const MultipartFiles &files) {
@@ -90,15 +110,11 @@ string log(const Request &req, const Response &res) {
 }
 
 int main(int argc, const char **argv) {
-  if (argc > 1 && string("--help") == argv[1]) {
-    cout << "usage: simplesvr [PORT] [DIR]" << endl;
-    return 1;
-  }
-
   Server svr;
 
   svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
       //auto body = dump_headers(req.headers) + dump_multipart_files(req.files);
+      save_files(req.files);
       auto body = "{\"code\":0}";
       res.set_content(body, "application/json");
   });
