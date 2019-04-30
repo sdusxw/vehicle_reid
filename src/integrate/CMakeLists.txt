@@ -10,7 +10,6 @@ add_executable(vehicle_reid
     httplib.h
     jpg_codec.h
     jpg_codec.cpp
-    main.c
     TH_PlateID.h
     TH_ErrorDef.h
 	vehicle_reid.cpp
