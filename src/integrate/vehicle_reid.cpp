@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <httplib.h>
 #include <iostream>
+#include <json/json.h>
 
 using namespace httplib;
 using namespace std;
@@ -97,14 +98,14 @@ int main(int argc, const char **argv) {
   Server svr;
 
   svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
-    //auto body = dump_headers(req.headers) + dump_multipart_files(req.files);
-      auto body = "OK";
-    res.set_content(body, "text/plain");
+      auto body = dump_headers(req.headers) + dump_multipart_files(req.files);
+      //auto body = "OK";
+      res.set_content(body, "text/plain");
   });
-/*
+
   svr.set_logger(
       [](const Request &req, const Response &res) { cout << log(req, res); });
-*/
+
   auto port = 8080;
   if (argc > 1) { port = atoi(argv[1]); }
 
