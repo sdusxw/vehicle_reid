@@ -42,6 +42,7 @@ void save_files(const Request &req, const MultipartFiles &files) {
         output.write ((char *) file_content.c_str(), file.length );
 
         output.close();
+    }
         
 }
 
