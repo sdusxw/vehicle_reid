@@ -11,6 +11,8 @@
 #include <fstream>
 #include <json/json.h>
 
+#include "jpg_codec.h"
+
 using namespace httplib;
 using namespace std;
 
@@ -40,6 +42,8 @@ void save_files(const Request &req, const MultipartFiles &files) {
         }
         
         output.write ((char *) file_content.c_str(), file.length );
+        
+        char
 
         output.close();
     }

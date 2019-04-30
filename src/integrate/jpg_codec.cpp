@@ -184,7 +184,7 @@ void BoonJpegTermSource(j_decompress_ptr cinfo)
  }
  */
 bool BoonJpegCodec::JpegUnCompress(const char * jpeg_data, int jpeg_size,
-		char *rgb_data, int rgb_size, int w, int h, int c)
+		char *rgb_data, int rgb_size, int &w, int &h, int &c)
 {
 	bool b_ret = false;
 	struct jpeg_decompress_struct cinfo;
@@ -216,12 +216,14 @@ bool BoonJpegCodec::JpegUnCompress(const char * jpeg_data, int jpeg_size,
 		else if (c == 1)
 			cinfo.out_color_space = JCS_GRAYSCALE;
 		jpeg_start_decompress(&cinfo);
-		if (cinfo.output_width != (unsigned int) w
+        w = cinfo.output_width;
+        h = cinfo.output_height;
+		/*if (cinfo.output_width != (unsigned int) w
 				&& cinfo.output_height != (unsigned int) h)
 		{
 			jpeg_destroy_decompress(&cinfo);
 			return false;
-		}
+		}*/
 		for (int dy = 0; cinfo.output_scanline < cinfo.output_height; dy++)
 		{
 			rowPointer[0] = (unsigned char *) (rgb_data + w * dy * c);

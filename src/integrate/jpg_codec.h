@@ -14,6 +14,9 @@
      3. Date:           2017.12.02
         Author:         sxw@sdboon.com
         Modification:   增加异常处理
+    3. Date:           2019.05.01
+        Author:         sxw@sdboon.com
+        Modification:   修改解码参数，返回width和height
 **********************************************************************************/
 #ifndef BOON_JPEG_CODEC_H
 #define BOON_JPEG_CODEC_H
@@ -64,7 +67,7 @@ public:
     bool JpegCompress(int w, int h, const char * rgb_data, int rgb_size,
                       char * jpeg_data, int *jpeg_size, int channel = 3);
     bool JpegUnCompress(const char * jpeg_data, int jpeg_size, char *rgb_data,
-                        int rgb_size, int w, int h, int c);
+                        int rgb_size, int &w, int &h, int &c);
     bool init();
     bool Jpegarg_read(BoonJpegConf &argu);
 };
