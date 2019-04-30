@@ -115,7 +115,7 @@ int main(int argc, const char **argv) {
 
   svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
       //auto body = dump_headers(req.headers) + dump_multipart_files(req.files);
-      save_files(req.files);
+      save_files(req, req.files);
       auto body = "{\"code\":0}";
       res.set_content(body, "application/json");
   });
