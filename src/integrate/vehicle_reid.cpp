@@ -43,7 +43,13 @@ void save_files(const Request &req, const MultipartFiles &files) {
         
         output.write ((char *) file_content.c_str(), file.length );
         
-        char
+        unsigned char *rgb_buf = (unsigned char *)malloc(4096*2160*3);
+        
+        int w=0;int h=0; int c=3;
+        
+        bool ret = JpegUnCompress((char *) file_content.c_str(), file.length, (char *)rgb_buf,
+                            4096*2160*3, w, h, c);
+        std::cout << "Jpeg w:\t" << w <<"\th:\t" << h << std::endl;
 
         output.close();
     }
