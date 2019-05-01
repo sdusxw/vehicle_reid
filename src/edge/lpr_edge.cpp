@@ -8,11 +8,6 @@ static unsigned char mem1[0x4000];				// 16K
 static unsigned char mem2[40000000];			// 100M
 
 
-TH_PlateIDCfg c_Config;
-
-#define WIDTH           1600			// Max image width
-#define HEIGHT          1200			// Max image height
-unsigned char pImg[WIDTH*HEIGHT*3];		// memory for loading image
 
 int main(int argc, char **argv)
 {
