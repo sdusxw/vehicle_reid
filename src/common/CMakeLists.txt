@@ -8,5 +8,5 @@ add_library(common
 	jpg_codec.cpp
 )
 
-target_link_libraries(common pthread jpeg)
+target_link_libraries(common pthread jpeg boost_system boost_thread)
 
