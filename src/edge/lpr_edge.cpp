@@ -1,42 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "TH_PlateID.h"
+#include "jpg_codec.h"
 
 #define BGR888
-
-
-int readline(FILE* f, char *line)
-{
-    char c;
-    int len = 0;
-       
-    while ((c=fgetc(f)) != EOF && c != '\n' && c != '\r')
-    {
-        line[len++] = c;
-    }
-    line[len] = '\0';
-	if(len > 0)
-		return 1;
-    else
-		return 0;
-	
-	//if(c==EOF)
-		//fseek(f, 0, 0);
-	return 1;
-	
-}
-
-
-//int ReadBmp(char * FileName, unsigned char * pImg, int *pwidth, int *pheight);
-//int read_JPEG_file (char * filename, unsigned char* pImg, int* pwidth, int* pheight);
-
 
 static unsigned char mem1[0x4000];				// 16K
 static unsigned char mem2[40000000];			// 100M
 
 
 TH_PlateIDCfg c_Config;
-int nMinSram, nMinSdram;				// check SRAM and SDRAM
 
 #define WIDTH           1600			// Max image width
 #define HEIGHT          1200			// Max image height
@@ -45,7 +17,6 @@ unsigned char pImg[WIDTH*HEIGHT*3];		// memory for loading image
 int main(int argc, char **argv)
 {
 	int i;
-    FILE *file_list;
 	int nResultNum;
 /*
     char file_name[64];
@@ -121,13 +92,7 @@ int main(int argc, char **argv)
 			printf("RecogImageRet = %d\n", nRet);
 			return -1;
 		}
-			
-		TH_CheckMinFreeMemory(&nMinSram, &nMinSdram, &c_Config);
-		printf("MinSram: %d MinSdram: %d\n", nMinSram, nMinSdram);
-		//if(nResultNum)
-		//{
-		//	TH_EvaluateCarColor(pImg, width, height,  result, &nResultNum, NULL, &c_Config);
-		//}
+ 
 		if(nRet == 0)
 		{
 			for(i=0; i<nResultNum; i++)

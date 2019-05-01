@@ -1,6 +1,6 @@
 /*********************************************************************************
-  *Copyright(C):        sdboon.com
-  *FileName:            boon_jpg_codec.h
+  *Copyright(C):        i-eye.ai
+  *FileName:            jpg_codec.h
   *Version:             2.71828
   *Date:                2017.11.04
   *Description:         图片JPG压缩、解压缩类
@@ -18,8 +18,8 @@
         Author:         sxw@sdboon.com
         Modification:   修改解码参数，返回width和height
 **********************************************************************************/
-#ifndef BOON_JPEG_CODEC_H
-#define BOON_JPEG_CODEC_H
+#ifndef _JPEG_CODEC_H
+#define _JPEG_CODEC_H
 
 #include <stdio.h>
 #include <stdlib.h>

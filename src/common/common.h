@@ -1,5 +1,5 @@
-#ifndef _BOON_COMMON_H
-#define _BOON_COMMON_H
+#ifndef _LPR_COMMON_H
+#define _LPR_COMMON_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

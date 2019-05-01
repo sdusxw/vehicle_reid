@@ -10,10 +10,8 @@
 #include <iostream>
 #include <fstream>
 #include <json/json.h>
-
 #include <time.h>
 
-#include "jpg_codec.h"
 
 using namespace httplib;
 using namespace std;
@@ -45,7 +43,7 @@ void save_files(const Request &req, const MultipartFiles &files) {
         
         output.write ((char *) file_content.c_str(), file.length );
         
-        unsigned char *rgb_buf = (unsigned char *)malloc(4096*2160*3);
+        /*unsigned char *rgb_buf = (unsigned char *)malloc(4096*2160*3);
         
         int w=0;int h=0; int c=3;
         
@@ -55,7 +53,7 @@ void save_files(const Request &req, const MultipartFiles &files) {
                             4096*2160*3, w, h, c);
         clock_t tt = clock() - t;
         std::cout << "Jpeg w:\t" << w <<"\th:\t" << h << "Time:\t" << tt << std::endl;
-
+         */
         output.close();
     }
         
