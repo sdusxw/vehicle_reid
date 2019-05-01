@@ -1,5 +1,7 @@
 
 add_library(common
+	common.h
+	common.cpp
 	concurrent_queue.h
 	concurrent_queue.cpp
 	jpg_codec.h

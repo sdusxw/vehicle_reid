@@ -27,8 +27,8 @@ int readline(FILE* f, char *line)
 }
 
 
-int ReadBmp(char * FileName, unsigned char * pImg, int *pwidth, int *pheight);
-int read_JPEG_file (char * filename, unsigned char* pImg, int* pwidth, int* pheight);
+//int ReadBmp(char * FileName, unsigned char * pImg, int *pwidth, int *pheight);
+//int read_JPEG_file (char * filename, unsigned char* pImg, int* pwidth, int* pheight);
 
 
 static unsigned char mem1[0x4000];				// 16K
@@ -38,7 +38,6 @@ static unsigned char mem2[40000000];			// 100M
 TH_PlateIDCfg c_Config;
 int nMinSram, nMinSdram;				// check SRAM and SDRAM
 
-#ifdef BGR888
 #define WIDTH           1600			// Max image width
 #define HEIGHT          1200			// Max image height
 unsigned char pImg[WIDTH*HEIGHT*3];		// memory for loading image
@@ -48,7 +47,7 @@ int main(int argc, char **argv)
 	int i;
     FILE *file_list;
 	int nResultNum;
-    
+/*
     char file_name[64];
     TH_PlateIDResult result[6];
     int nRet;
@@ -144,136 +143,7 @@ int main(int argc, char **argv)
 		}
 	}
 	fclose(file_list);
+ */
 	return 0;
 }
 
-#endif
-
-#if (defined(YUV422) || defined(YUV420) || defined(UYVY) || defined(NV21))
-#define WIDTH           1920				
-#define HEIGHT          1088
-unsigned char pImg[WIDTH*HEIGHT*3];
-
-// Test YUV422 
-int main(void)
-{
-	int i = 0;
-	int j;
-    FILE *file_list, *fin;
-	int nResultNum;
-	char buf[32];
-    int width = WIDTH; 
-    int height = HEIGHT;
-	TH_RECT rect;
-    char file_name[64];
-    TH_PlateIDResult result[6];
-	int nResultCnt = 0;
-    int nRet;
-	int nFileCnt = 0;
-#ifdef DSP
-	Setup_Cache();
-#endif
-    c_Config=c_defConfig;
-	c_Config.nMaxImageWidth = WIDTH;
-	c_Config.nMaxImageHeight = HEIGHT;
-	c_Config.pFastMemory=mem1;
-	c_Config.nFastMemorySize=0x4000;
-	c_Config.pMemory=mem2;
-	c_Config.nMemorySize=10000000;
-	c_Config.bIsFieldImage=0;
-	c_Config.nMinPlateWidth=80;
-	c_Config.nMaxPlateWidth=200;
-	
-	c_Config.bOutputSingleFrame=0;
-	printf("init SDK\n");
-    nRet = TH_InitPlateIDSDK(&c_Config);	
-    printf("init ret = %d\n", nRet);
-#ifdef YUV422
-	TH_SetImageFormat(ImageFormatNV16, 0, 0, &c_Config);
-	//TH_SetImageFormat(ImageFormatYUV422, 0, 1, &c_Config);
-#endif
-#ifdef YUV420
-	TH_SetImageFormat(ImageFormatRGB, 0, 1, &c_Config);
-#endif
-#ifdef UYVY
-	TH_SetImageFormat(ImageFormatUYVY, 0, 0, &c_Config);
-#endif
-
-#ifdef NV21
-	TH_SetImageFormat(ImageFormatNV21, 0, 0, &c_Config);
-#endif	
-	TH_SetRecogThreshold(5,1,&c_Config);
-	//TH_SetProvinceOrder("鲁", &c_Config);
-	TH_SetEnabledPlateFormat(PARAM_INDIVIDUAL_ON, &c_Config);
-	TH_SetEnabledPlateFormat(PARAM_ARMPOLICE_ON, &c_Config);
-	TH_SetEnabledPlateFormat(PARAM_TWOROWARMY_ON, &c_Config);
-	TH_SetEnabledPlateFormat(PARAM_ARMPOLICE2_ON, &c_Config);
-	file_list = fopen("test_list_yuv.txt", "r");
-	//file_list = fopen("test_list.txt", "r");
-    if(file_list == NULL)
-    {
-        printf("fail to open test file list\n");
-        //return -1;
-    }
-	/*	
-	while(readline(file_list, file_name) != 0)
-	{
-		
-		memset(filenames[i],0, 512);
-		memcpy(filenames[i], file_name, strlen(file_name));
-		//printf("%s\n",filenames[i]);
-		i++;
-	}
-	nFileCnt = i;
-	*/    
-	printf("openfile\n");
-	//while(readline(file_list, file_name) != 0)
-    while(1)
-	{
-		//srand(clock());
-		//j=rand()%nFileCnt;
-		//memset(file_name, 0, 64);
-		//memcpy(file_name, filenames[j], strlen(filenames[j]));
-		//sscanf(file_name, "%[^.]", buf);
-		printf("%s ", file_name);
-        //fin = fopen(file_name, "rb");
-		fin = fopen("E:\\teamwork\\l刘冬\\jpg+原始数据\\jpg+原始数据_1\\3349.txt", "rb");
-        if(fin == NULL)
-        {
-            printf("fail to open %s\n", file_name);
-            return -2;
-        }
-        //fread(pImg, width*height, 2, fin);
-
-		fseek(fin, 555808, 0);
-		fread(pImg, width*height, 3, fin);
-        fclose(fin);
-		nResultNum=6;
-		nRet=TH_RecogImage(pImg, width, height,  result, &nResultNum, NULL, &c_Config);
-		//TH_CheckMinFreeMemory(&nMinSram, &nMinSdram, &c_Config);
-		// printf("SRAM %d SDRAM %d\n", nMinSram, nMinSdram);
-		
-		printf("ret=%d ", nRet);
-        printf("cnt=%d ", nResultNum);
-		nResultCnt+=nResultNum;
-		/*
-		if(strstr(file_name, "Plate") != 0 && nResultNum == 0)
-		{
-			return -3;
-		}
-		*/
-		for(i=0; i<nResultNum; i++)
-		{
-			//printf("plate: %s, color: %s\nleft: %d, top: %d, right: %d, bottom: %d %d\n",
-			//	result[i].license, result[i].color, result[i].rcLocation.left, result[i].rcLocation.top,
-			//	result[i].rcLocation.right, result[i].rcLocation.bottom, result[i].nType);
-			printf("plate: %s ", result[i].license);
-		}
-		printf("\n");
-    }
-	printf("Total result count: %d\n", nResultCnt);
-    fclose(file_list);
-    return 0;
-}
-
-#endif
