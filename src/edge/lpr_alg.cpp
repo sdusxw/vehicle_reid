@@ -104,7 +104,7 @@ bool vlpr_analyze(const unsigned char *pImage, int len, PVPR pVPR)
     if(!ret)
     {
         //JPG解码失败释放缓存
-        if(!rgb_buf)
+        if(rgb_buf)
         {
             free(rgb_buf);
             rgb_buf=NULL;
@@ -120,7 +120,7 @@ bool vlpr_analyze(const unsigned char *pImage, int len, PVPR pVPR)
     roi_rect.bottom = (int)h*0.95;
     int nRet=TH_RecogImage(rgb_buf, w, h,  result, &nResultNum, &roi_rect, &c_Config);
     //识别之后释放RGB缓存
-    if(!rgb_buf)
+    if(rgb_buf)
     {
         free(rgb_buf);
         rgb_buf=NULL;
