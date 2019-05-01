@@ -3,6 +3,9 @@
 #include "jpg_codec.h"
 
 #include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 #define WIDTH           4096            // Max image width
 #define HEIGHT          2160            // Max image height
@@ -30,7 +33,7 @@ bool vlpr_init()
     c_Config.bLotDetect = 0;
     c_Config.bLeanCorrection = 1;
     c_Config.nOrderOpt = 2;
-    c_Config.nImproveSpeed = 0;
+    c_Config.nImproveSpeed = 1;
 
     
     int nRet = TH_InitPlateIDSDK(&c_Config);
@@ -40,7 +43,7 @@ bool vlpr_init()
     char default_province[] = "苏";
     
     TH_SetRecogThreshold(5,2,&c_Config);
-    TH_SetEnabledPlateFormat(PARAM_TWOROWYELLOW_ON, &c_Config);
+    TH_SetEnabledPlateFormat(PARAM_TWOROWYELLOW_OFF, &c_Config);
     //TH_SetEnabledPlateFormat(PARAM_INDIVIDUAL_ON, &c_Config);
     TH_SetEnabledPlateFormat(PARAM_ARMPOLICE_ON, &c_Config);
     //TH_SetEnabledPlateFormat(PARAM_TWOROWARMY_ON, &c_Config);
@@ -77,7 +80,19 @@ bool vlpr_analyze(const unsigned char *pImage, int len, PVPR pVPR)
     roi_rect.right=(int)w*0.9;
     roi_rect.top = (int)h*0.3;
     roi_rect.bottom = (int)h*0.95;
+    t=clock();
     int nRet=TH_RecogImage(rgb_buf, w, h,  result, &nResultNum, &roi_rect, &c_Config);
+    tt = clock() - t;
+    cout << "1 time " << tt/1000 << "ms" << endl;
+    t=clock();
+     nRet=TH_RecogImage(rgb_buf, w, h,  result, &nResultNum, &roi_rect, &c_Config);
+    tt = clock() - t;
+    cout << "2 time " << tt/1000 << "ms" << endl;
+    t=clock();
+     nRet=TH_RecogImage(rgb_buf, w, h,  result, &nResultNum, &roi_rect, &c_Config);
+    tt = clock() - t;
+    cout << "3 time " << tt/1000 << "ms" << endl;
+    
     printf("ret=%d cnt=%d \n", nRet, nResultNum);
     
     if(nRet!=0)
