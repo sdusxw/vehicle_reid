@@ -22,8 +22,11 @@ set(bin_dir "@PROJECT_BINARY_DIR@")
 set(lib_dir "@PROJECT_BINARY_DIR@")
 
 set(SOLUTION_INCLUDE_DIRS
-#    ${src_dir}/tcp_server
-#    ${src_dir}/aipayserver
+	${src_dir}/common
+	/usr/local/include
+)
+set(SOLUTION_LINK_DIRS
+	/usr/local/lib64
 )
 
 SET(EXECUTABLE_OUTPUT_PATH ${bin_dir}/bin)
@@ -31,6 +34,7 @@ SET(LIBRARY_OUTPUT_PATH ${lib_dir}/lib)
 
 # add subdirectories
 #add_subdirectory(cloud)
-#add_subdirectory(edge)
+add_subdirectory(common)
+add_subdirectory(edge)
 #add_subdirectory(deeplpr)
 add_subdirectory(integrate)
