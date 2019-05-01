@@ -29,7 +29,7 @@ concurrent_queue<HttpInfo> g_http_buff;
 
 boost::thread thread_http_handler;
 
-void task_htt_handler();
+void task_http_handler();
 
 string dump_headers(const Headers &headers) {
     string s;
@@ -173,7 +173,7 @@ int main(int argc, const char **argv) {
     
     /*svr.set_logger(
      [](const Request &req, const Response &res) { cout << log(req, res); });*/
-    thread_http_handler = boost::thread(boost::bind(&task_htt_handler));
+    thread_http_handler = boost::thread(boost::bind(&task_http_handler));
   
     cout << "The server started at port " << server_conf.server_port << "..." << endl;
     
