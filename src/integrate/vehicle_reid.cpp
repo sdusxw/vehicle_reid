@@ -11,12 +11,31 @@
 #include <json/json.h>
 #include <time.h>
 #include <boost/thread.hpp>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/sem.h>
+#include <sys/types.h>
+#include <string.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <time.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "lpr_alg.h"
 #include "common.h"
 #include "httplib.h"
 #include "concurrent_queue.h"
 
 using namespace httplib;
 using namespace std;
+
+#define MAX_BUFF_LENGTH     (10*1024*1024)  //共享内存大小10M
 
 class HttpInfo
 {
@@ -143,13 +162,61 @@ void task_http_handler()
     while (true) {
         HttpInfo http_info;
         g_http_buff.wait_and_pop(http_info);
-        //save_files(http_info.req, http_info.req.files);
+        save_files(http_info.req, http_info.req.files);
         auto body = "{\"code\":0}";
         http_info.res.set_content(body, "application/json");
     }
 }
 
+int shmid;
+int msgid;
+char *shmadd;
+char *msgadd;
+sem_t *semr;
+sem_t *semw;
+PVPR pvpr;
 int main(int argc, const char **argv) {
+    
+    int ret = 0;
+    semr = sem_open("mysem_r",O_CREAT | O_RDWR , 0666, 0);
+    if (semr == SEM_FAILED)
+    {
+        printf("errno=%d\n", errno);
+        return -1;
+    }
+    
+    semw = sem_open("mysem_w", O_CREAT | O_RDWR, 0666, 1);
+    if (semw == SEM_FAILED)
+    {
+        printf("errno=%d\n", errno);
+        return -1;
+    }
+    
+    if ((shmid = shmget((key_t)2019, MAX_BUFF_LENGTH, 0666 | IPC_CREAT)) == -1)
+    {
+        perror("semget");
+        exit(-1);
+    }
+    
+    if ((shmadd = (char *)shmat(shmid, NULL, 0)) == (char *)(-1))
+    {
+        perror("shmat");
+        exit(-1);
+    }
+    
+    if ((msgid = shmget((key_t)0430, sizeof(VPR), 0666 | IPC_CREAT)) == -1)
+    {
+        perror("semget");
+        exit(-1);
+    }
+    
+    if ((msgadd = (char *)shmat(msgid, NULL, 0)) == (char *)(-1))
+    {
+        perror("shmat");
+        exit(-1);
+    }
+    
+    pvpr = (PVPR)msgadd;
     //读取服务器配置文件
     ServerConf server_conf;
     server_conf.server_ip="0.0.0.0";
@@ -163,17 +230,36 @@ int main(int argc, const char **argv) {
     }
     Server svr;
     svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
-        HttpInfo http_info;
-        http_info.req = req;
-        http_info.res = res;
-        g_http_buff.push(http_info);
-        //auto body = "{\"code\":0}";
-        //res.set_content(body, "application/json");
+        bool have_jpg = false;
+        std::string file_name;
+        std::string file_content;
+        int file_len;
+        for (const auto &x : req.files) {
+            const auto &name = x.first;
+            const auto &file = x.second;
+            if(name != "file") continue;
+            file_content = req.body.substr(file.offset, file.length);
+            file_name = file.filename;
+            file_len = (int)file.length;
+            have_jpg = true;
+        }
+        std::string body;
+        if(have_jpg)
+        {
+            sem_wait(semw);
+            pvpr->jpeg_len = file_len;
+            memcpy((void*)shmadd, (void*)file_content.c_str(), (size_t)file_len);
+            sem_post(semr);
+            body = "{\"code\":0}";
+        }else{
+            body = "{\"code\":1}";
+        }
+        res.set_content(body, "application/json");
     });
     
     /*svr.set_logger(
      [](const Request &req, const Response &res) { cout << log(req, res); });*/
-    thread_http_handler = boost::thread(boost::bind(&task_http_handler));
+    //thread_http_handler = boost::thread(boost::bind(&task_http_handler));
   
     cout << "The server started at port " << server_conf.server_port << "..." << endl;
     

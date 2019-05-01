@@ -23,6 +23,7 @@ set(lib_dir "@PROJECT_BINARY_DIR@")
 
 set(SOLUTION_INCLUDE_DIRS
 	${src_dir}/common
+    ${src_dir}/edge
 	/usr/local/include
 )
 set(SOLUTION_LINK_DIRS

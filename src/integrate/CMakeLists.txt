@@ -3,6 +3,7 @@ include_directories(
 )
 link_directories(
 	${SOLUTION_LINK_DIRS}
+    ${src_dir}/lib
 )
 
 add_executable(vehicle_reid
@@ -10,4 +11,4 @@ add_executable(vehicle_reid
 	vehicle_reid.cpp
 )
 
-target_link_libraries(vehicle_reid pthread jsoncpp common boost_thread boost_system)
+target_link_libraries(vehicle_reid pthread jsoncpp common boost_thread boost_system thplateid)
