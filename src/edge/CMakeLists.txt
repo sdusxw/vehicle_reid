@@ -31,4 +31,4 @@ target_link_libraries(lpr_edge pthread common thplateid)
 
 target_link_libraries(lpr_test pthread common thplateid)
 
-target_link_libraries(shm_test pthread common)
+target_link_libraries(shm_test pthread common thplateid)
