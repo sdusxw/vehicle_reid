@@ -22,6 +22,11 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    if(argc < 2)
+    {
+        cout << argv[0] << " filename" << endl;
+        return 0;
+    }
     PVPR pvpr;
     int ret = 0;
     int shmid;
@@ -68,28 +73,27 @@ int main(int argc, char *argv[])
     
     pvpr = (PVPR)msgadd;
     
-    if(!vlpr_init())
-    {
-        cout<<"LPR_ALG init Fail!"<<endl;
-        exit(-1);
-    }else{
-        cout<<"LPR_ALG init OK!"<<endl;
+    //读取文件
+    std::ifstream file(argv[1], std::ios::in | std::ios::binary | std::ios::ate);
+    if (!file.is_open()) {
+        fprintf(stderr, "open file fail: %s\n", argv[1]);
+        return -1;
     }
+    
+    std::streampos size = file.tellg();
+    file.seekg(0, std::ios::beg);
+    std::string buffer(size, ' ');
+    file.read(&buffer[0], size);
+    file.close();
     
     //while (1)
     {
-        sem_wait(semr);
-        clock_t t=clock();
-        if(vlpr_analyze((const unsigned char *)shmadd, pvpr->jpeg_len, pvpr))
-        {
-            cout << "Time\t" << (clock()-t)/1000 << " ms" << endl;
-            cout << "OK\t" << pvpr->license << "\t" << pvpr->color << "\t" << pvpr->nColor << "\t" << pvpr->nConfidence << endl;
-            cout << "Coor\t"  << pvpr->left << "\t" << pvpr->top << "\t" << pvpr->right << "\t" << pvpr->bottom << endl;
-        }else{
-            cout << "Time\t" << (clock()-t)/1000 << " ms" << endl;
-            cout << "Fail" << endl;
-        }
-        sem_post(semw);
+        sem_wait(semw);
+        printf("start>>>>>>>>>>>>>>");
+        pvpr->jpeg_len = (int)size;
+        memcpy((void*)shmadd, (void*)buffer.c_str(), (size_t)size);
+        sem_post(semr);
+        printf("over>>>>>>>>>>>>>>");
     }
     
     return ret;

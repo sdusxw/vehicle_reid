@@ -27,6 +27,8 @@ typedef struct VehiclePlateResult
     int top;
     int right;
     int bottom;
+    
+    int jpeg_len;       //jpg 图片长度
 } VPR, *PVPR;
 //车牌识别初始化
 bool vlpr_init();
