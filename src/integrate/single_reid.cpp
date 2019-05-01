@@ -194,6 +194,8 @@ int main(int argc, const char **argv) {
     Server svr;
     svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
         Json::Value json_res;
+        Json::StreamWriterBuilder writerBuilder;
+        std::ostringstream os;
         bool have_jpg = false;
         std::string file_name;
         std::string file_content;
@@ -215,8 +217,8 @@ int main(int argc, const char **argv) {
             clock_t t=clock();
             if(vlpr_analyze((const unsigned char *)file_content.c_str(), file_len, pvpr))
             {
-                cout << (clock()-t)/1000 << "";
-                cout << pvpr->license << " " << pvpr->color << endl;
+                cout << (clock()-t)/1000 << "\t";
+                cout << pvpr->license << "\t" << pvpr->color << endl;
                 Json::Value json_result;
                 json_result["fx_device_id"]="beichuang_01";
                 json_result["duration"]=(int)((clock()-t)/1000);
@@ -240,7 +242,7 @@ int main(int argc, const char **argv) {
                 array.append(json_results);
                 json_res["results"]=array;
             }else{
-                cout << (clock()-t)/1000 << "";
+                cout << (clock()-t)/1000 << "\t";
                 cout << "Fail" << endl;
                 
                 Json::Value json_results;
@@ -255,7 +257,6 @@ int main(int argc, const char **argv) {
                 array.append(json_results);
                 json_res["results"]=array;
             }
-            body = json_res.toStyledString();
         }else{
             Json::Value json_results;
             json_results["code"]=2;
@@ -268,8 +269,10 @@ int main(int argc, const char **argv) {
             Json::Value array;
             array.append(json_results);
             json_res["results"]=array;
-            body = json_res.toStyledString();
         }
+        std::unique_ptr<Json::StreamWriter> jsonWriter(writerBuilder.newStreamWriter());
+        jsonWriter->write(json_res, &os);
+        body = os.str();
         res.set_content(body, "application/json");
     });
     
