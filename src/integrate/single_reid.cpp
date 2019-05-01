@@ -193,6 +193,7 @@ int main(int argc, const char **argv) {
     }
     Server svr;
     svr.Post("/chpAnalyze", [](const Request &req, Response &res) {
+        Json::Value json_res;
         bool have_jpg = false;
         std::string file_name;
         std::string file_content;
@@ -206,24 +207,68 @@ int main(int argc, const char **argv) {
             file_len = (int)file.length;
             have_jpg = true;
         }
-        cout << file_name << endl;
-        cout << file_len << endl;
+        cout << file_name << "\t";
+        cout << file_len << "\t";
         std::string body;
         if(have_jpg)
         {
             clock_t t=clock();
             if(vlpr_analyze((const unsigned char *)file_content.c_str(), file_len, pvpr))
             {
-                cout << "Time\t" << (clock()-t)/1000 << " ms" << endl;
-                cout << "OK\t" << pvpr->license << "\t" << pvpr->color << "\t" << pvpr->nColor << "\t" << pvpr->nConfidence << endl;
-                cout << "Coor\t"  << pvpr->left << "\t" << pvpr->top << "\t" << pvpr->right << "\t" << pvpr->bottom << endl;
+                cout << (clock()-t)/1000 << "";
+                cout << pvpr->license << " " << pvpr->color << endl;
+                Json::Value json_result;
+                json_result["fx_device_id"]="beichuang_01";
+                json_result["duration"]=(int)((clock()-t)/1000);
+                json_result["vehlic"]=pvpr->license;
+                json_result["lic_color"]=pvpr->nColor;
+                Json::Value json_rect;
+                json_rect["left"]=pvpr->left;
+                json_rect["right"]=pvpr->right;
+                json_rect["top"]=pvpr->top;
+                json_rect["bottom"]=pvpr->bottom;
+                json_result["rect"]=json_rect;
+                Json::Value json_results;
+                json_results["code"]=0;
+                json_results["message"]="successd";
+                json_results["filename"]=file_name;
+                json_results["vender_id"]="sjk-beichuang-lpa";
+                json_results["result"]=json_result;
+                json_res["code"]=0;
+                json_res["message"]="successd";
+                Json::Value array;
+                array.append(json_results);
+                json_res["results"]=array;
             }else{
-                cout << "Time\t" << (clock()-t)/1000 << " ms" << endl;
+                cout << (clock()-t)/1000 << "";
                 cout << "Fail" << endl;
+                
+                Json::Value json_results;
+                json_results["code"]=2;
+                json_results["message"]="NO_PLATE";
+                json_results["filename"]=file_name;
+                json_results["vender_id"]="sjk-beichuang-lpa";
+                
+                json_res["code"]=0;
+                json_res["message"]="successd";
+                Json::Value array;
+                array.append(json_results);
+                json_res["results"]=array;
             }
-            body = "{\"code\":0}";
+            body = json_res.toStyledString();
         }else{
-            body = "{\"code\":1}";
+            Json::Value json_results;
+            json_results["code"]=2;
+            json_results["message"]="NO_PLATE";
+            json_results["filename"]=file_name;
+            json_results["vender_id"]="sjk-beichuang-lpa";
+            
+            json_res["code"]=0;
+            json_res["message"]="successd";
+            Json::Value array;
+            array.append(json_results);
+            json_res["results"]=array;
+            body = json_res.toStyledString();
         }
         res.set_content(body, "application/json");
     });
