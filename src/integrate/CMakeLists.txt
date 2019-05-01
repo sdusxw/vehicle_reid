@@ -10,4 +10,4 @@ add_executable(vehicle_reid
 	vehicle_reid.cpp
 )
 
-target_link_libraries(vehicle_reid pthread jsoncpp common)
+target_link_libraries(vehicle_reid pthread jsoncpp common boost_thread)
