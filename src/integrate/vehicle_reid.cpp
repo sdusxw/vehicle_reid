@@ -243,6 +243,8 @@ int main(int argc, const char **argv) {
             file_len = (int)file.length;
             have_jpg = true;
         }
+        cout << file_name << endl;
+        cout << file_len << endl;
         std::string body;
         if(have_jpg)
         {

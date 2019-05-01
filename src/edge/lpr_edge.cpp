@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
         cout<<"LPR_ALG init OK!"<<endl;
     }
     
-    //while (1)
+    while (1)
     {
         sem_wait(semr);
         clock_t t=clock();
