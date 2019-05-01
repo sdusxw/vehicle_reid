@@ -219,7 +219,7 @@ std::vector<std::string> string_split(std::string str,std::string pattern)
     }
     return result;
 }
-bool read_config(Configure &conf)
+bool read_config(ServerConf &conf)
 {
     std::fstream cfg_file;
     cfg_file.open(CONFIGURE_FILE);
@@ -228,7 +228,6 @@ bool read_config(Configure &conf)
         std::cout << "Error: Open config file " << CONFIGURE_FILE << std::endl;
         return false;
     }
-    char tmp[256];
     while (!cfg_file.eof())
     {
         char tmp[256] = "";
@@ -246,13 +245,9 @@ bool read_config(Configure &conf)
             {
                 conf.server_port = atoi((line.substr(pos + 1)).c_str());
             }
-            else if (tmp_key == "PARK_ID")
+            else if (tmp_key == "IMAGE_BASE")
             {
-                conf.park_id = line.substr(pos + 1);
-            }
-            else if (tmp_key == "BOX_IP")
-            {
-                conf.box_ip = line.substr(pos + 1);
+                conf.image_base = line.substr(pos + 1);
             }
         }
     }

@@ -21,15 +21,14 @@
 #include <vector>
 #include <time.h>
 
-#define CONFIGURE_FILE    "../conf/config.txt"
+#define CONFIGURE_FILE    "../conf/server.conf"
 
-class Configure
+class ServerConf
 {
 public:
     std::string server_ip;
     int     server_port;
-    std::string park_id;
-    std::string box_ip;
+    std::string image_base;
 };
 
 //全局日志文件变量
@@ -61,7 +60,7 @@ bool is_have_instance();
 //string 字符串分割
 std::vector<std::string> string_split(std::string str, std::string pattern);
 //读取配置文件
-bool read_config(Configure &conf);
+bool read_config(ServerConf &conf);
 //字符编码转换
 /*
 bool gbk2utf8(std::string gbk, std::string &utf8);
