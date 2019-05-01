@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <time.h>
 using namespace std;
 
 int main(int argc, char ** argv)
@@ -27,7 +27,19 @@ int main(int argc, char ** argv)
         file.read(&buffer[0], size);
         file.close();
         VPR vpr;
-        vlpr_analyze((const unsigned char *)buffer.c_str(), (int)size, &vpr);
+        for(int i=0;i<100;i++)
+        {
+            clock_t t=clock();
+            if(vlpr_analyze((const unsigned char *)buffer.c_str(), (int)size, &vpr))
+            {
+                cout << "Time\t" << (clock()-t)/1000 << " ms" << endl;
+                cout << "OK\t" << vpr.license << "\t" << vpr.color << "\t" << vpr.nColor << "\t" << vpr.nConfidence << endl;
+                cout << "Coor\t"  << vpr.left << "\t" << vpr.top << "\t" << vpr.right << "\t" << vpr.bottom << endl;
+            }else{
+                cout << "Time\t" << (clock()-t)/1000 << " ms" << endl;
+                cout << "Fail" << endl;
+            }
+        }
         
     }else{
         cout<<"LPR_ALG init Fail, Exit"<<endl;
