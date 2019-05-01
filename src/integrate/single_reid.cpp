@@ -167,13 +167,6 @@ void task_http_handler()
         http_info.res.set_content(body, "application/json");
     }
 }
-
-int shmid;
-int msgid;
-char *shmadd;
-char *msgadd;
-sem_t *semr;
-sem_t *semw;
 PVPR pvpr;
 int main(int argc, const char **argv) {
     //算法库初始化
@@ -184,6 +177,9 @@ int main(int argc, const char **argv) {
     }else{
         cout<<"LPR_ALG init OK!"<<endl;
     }
+    
+    pvpr=(PVPR)malloc(sizeof(VPR));
+    
     //读取服务器配置文件
     ServerConf server_conf;
     server_conf.server_ip="0.0.0.0";
