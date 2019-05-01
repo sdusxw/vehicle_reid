@@ -12,10 +12,8 @@ add_executable(vehicle_reid
 )
 add_executable(single_reid
     httplib.h
-    TH_PlateID.h
-    TH_ErrorDef.h
-    lpr_alg.h
-    lpr_alg.cpp
+    ../edge/lpr_alg.h
+    ../edge/lpr_alg.cpp
     single_reid.cpp
 )
 
