@@ -143,7 +143,7 @@ void task_http_handler()
     while (true) {
         HttpInfo http_info;
         g_http_buff.wait_and_pop(http_info);
-        save_files(http_info.req, http_info.req.files);
+        //save_files(http_info.req, http_info.req.files);
         auto body = "{\"code\":0}";
         http_info.res.set_content(body, "application/json");
     }
