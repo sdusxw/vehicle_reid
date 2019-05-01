@@ -72,7 +72,12 @@ bool vlpr_analyze(const unsigned char *pImage, int len, PVPR pVPR)
     std::cout << "Jpeg w:\t" << w <<"\th:\t" << h << "\tTime:\t" << tt/1000 << "ms" << std::endl;
     TH_PlateIDResult result[6];
     int nResultNum=1;
-    int nRet=TH_RecogImage(rgb_buf, w, h,  result, &nResultNum, NULL, &c_Config);
+    TH_RECT roi_rect;
+    roi_rect.left= (int)w*0.1;
+    roi_rect.right=(int)w*0.9;
+    roi_rect.top = (int)h*0.3;
+    roi_rect.bottom = (int)h*0.95;
+    int nRet=TH_RecogImage(rgb_buf, w, h,  result, &nResultNum, &roi_rect, &c_Config);
     printf("ret=%d cnt=%d \n", nRet, nResultNum);
     
     if(nRet!=0)
@@ -88,7 +93,7 @@ bool vlpr_analyze(const unsigned char *pImage, int len, PVPR pVPR)
             // memcpy(&nFrame,  result[i].pbyBits, 8);
             //printf("nFrame=%I64d\n", nFrame);
             if(result[i].nType>=0)
-                printf("plate: %s confidence:%d time:%d\n", result[i].license, result[i].nConfidence, result[i].nTime);
+                printf("plate: %s color: %s confidence:%d time:%d\n", result[i].license, result[i].color, result[i].nConfidence, result[i].nTime);
             else
                 printf("Type: %d\n", result[i].nType);
         }
