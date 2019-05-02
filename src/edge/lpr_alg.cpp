@@ -144,6 +144,6 @@ bool vlpr_analyze(const unsigned char *pImage, int len, PVPR pVPR)
         return true;
     }
     else{
-        return true;
+        return false;
     }
 }
