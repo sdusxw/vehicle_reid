@@ -88,6 +88,7 @@ void save_file(const char * file_content, int len, string file_name)
 {
     string path="",file="";
     if (split_filename(file_name, path, file)) {
+        path = server_conf.image_base + "/" + path;
         create_dir(path.c_str());
     }
     file_name = server_conf.image_base + "/" + file_name;
@@ -95,6 +96,10 @@ void save_file(const char * file_content, int len, string file_name)
     if( ! output )
     {
         cerr << "Open output file error!" << endl;
+        if (file_content) {
+            free((void*)file_content);
+            file_content = NULL;
+        }
         return;
     }
     
