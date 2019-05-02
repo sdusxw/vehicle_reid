@@ -299,6 +299,7 @@ int main(int argc, const char **argv) {
                 Json::Value array;
                 array.append(json_results);
                 json_res["results"]=array;
+                file_name += ".x.jpg";
             }
             pthread_mutex_unlock(&mutex_);
         }else{
