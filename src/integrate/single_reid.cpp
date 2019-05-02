@@ -216,6 +216,7 @@ int main(int argc, const char **argv) {
             file_len = (int)file.length;
             have_jpg = true;
         }
+        cout << get_time_ms() << "\t";
         cout << file_name << "\t";
         cout << file_len << "\t";
         std::string body;
