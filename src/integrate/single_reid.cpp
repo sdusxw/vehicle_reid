@@ -47,6 +47,17 @@ public:
     Response res;
 };
 
+class FileInfo
+{
+public:
+    char * p;
+    int len;
+    string filename;
+};
+
+ServerConf server_conf;
+PVPR pvpr;
+
 concurrent_queue<HttpInfo> g_http_buff;
 
 boost::thread thread_http_handler;
@@ -54,6 +65,12 @@ boost::thread thread_http_handler;
 pthread_mutex_t mutex_;
 
 void task_http_handler();
+
+concurrent_queue<FileInfo> g_file_queue;
+
+boost::thread thread_save_file;
+
+void task_save_file();
 
 string dump_headers(const Headers &headers) {
     string s;
@@ -67,35 +84,27 @@ string dump_headers(const Headers &headers) {
     return s;
 }
 
-void save_files(const Request &req, const MultipartFiles &files) {
-    for (const auto &x : files) {
-        const auto &name = x.first;
-        const auto &file = x.second;
-        if(name != "file") continue;
-        auto file_content = req.body.substr(file.offset, file.length);
-        ofstream output( "test_save_.jpg", ios::out | ios::binary );
-        if( ! output )
-        {
-            cerr << "Open output file error!" << endl;
-            return;
-        }
-        
-        output.write ((char *) file_content.c_str(), file.length );
-        
-        /*unsigned char *rgb_buf = (unsigned char *)malloc(4096*2160*3);
-         
-         int w=0;int h=0; int c=3;
-         
-         BoonJpegCodec bjc;
-         clock_t t=clock();
-         bool ret = bjc.JpegUnCompress((char *) file_content.c_str(), file.length, (char *)rgb_buf,
-         4096*2160*3, w, h, c);
-         clock_t tt = clock() - t;
-         std::cout << "Jpeg w:\t" << w <<"\th:\t" << h << "Time:\t" << tt << std::endl;
-         */
-        output.close();
+void save_file(const char * file_content, int len, string file_name)
+{
+    string path="",file="";
+    if (split_filename(file_name, path, file)) {
+        create_dir(path.c_str());
+    }
+    file_name = server_conf.image_base + "/" + file_name;
+    ofstream output( file_name, ios::out | ios::binary );
+    if( ! output )
+    {
+        cerr << "Open output file error!" << endl;
+        return;
     }
     
+    output.write (file_content, len);
+    
+    output.close();
+    if (file_content) {
+        free((void*)file_content);
+        file_content = NULL;
+    }
 }
 
 string dump_multipart_files(const MultipartFiles &files) {
@@ -167,12 +176,20 @@ void task_http_handler()
     while (true) {
         HttpInfo http_info;
         g_http_buff.wait_and_pop(http_info);
-        save_files(http_info.req, http_info.req.files);
         auto body = "{\"code\":0}";
         http_info.res.set_content(body, "application/json");
     }
 }
-PVPR pvpr;
+
+void task_save_file()
+{
+    while (true) {
+        FileInfo file_info;
+        g_file_queue.wait_and_pop(file_info);
+        save_file((const char*)file_info.p, file_info.len, file_info.filename);
+    }
+}
+
 int main(int argc, const char **argv) {
     //算法库初始化
     if(!vlpr_init())
@@ -188,7 +205,6 @@ int main(int argc, const char **argv) {
     pthread_mutex_init(&mutex_,NULL);
     
     //读取服务器配置文件
-    ServerConf server_conf;
     server_conf.server_ip="0.0.0.0";
     server_conf.server_port=80;
     server_conf.image_base="/data";
@@ -284,11 +300,14 @@ int main(int argc, const char **argv) {
         jsonWriter->write(json_res, &os);
         body = os.str();
         res.set_content(body, "application/json");
+        FileInfo file_info;
+        file_info.len = file_len;
+        file_info.p = (char*)malloc(file_len);
+        file_info.filename = file_name;
+        g_file_queue.push(file_info);
     });
     
-    /*svr.set_logger(
-     [](const Request &req, const Response &res) { cout << log(req, res); });*/
-    //thread_http_handler = boost::thread(boost::bind(&task_http_handler));
+    thread_save_file = boost::thread(boost::bind(&task_save_file));
   
     cout << "The server started at port " << server_conf.server_port << "..." << endl;
     

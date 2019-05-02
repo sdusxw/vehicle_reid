@@ -61,6 +61,8 @@ bool is_have_instance();
 std::vector<std::string> string_split(std::string str, std::string pattern);
 //读取配置文件
 bool read_config(ServerConf &conf);
+//分割路径和文件
+bool split_filename(std::string filename, std::string &path, std::string &file);
 //字符编码转换
 /*
 bool gbk2utf8(std::string gbk, std::string &utf8);

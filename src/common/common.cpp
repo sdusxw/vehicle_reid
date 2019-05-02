@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <sys/file.h>
 #include <fstream>
+#include <cstddef>
 /*
 #include <iconv.h>
 */
@@ -253,7 +254,18 @@ bool read_config(ServerConf &conf)
     }
     return true;
 }
-
+//分割路径和文件
+bool split_filename(std::string filename, std::string &path, std::string &file)
+{
+    std::size_t found = filename.find_last_of("/\\");
+    path = filename.substr(0,found);
+    file = filename.substr(found+1);
+    if (found == std::string::npos) {
+        return false;
+    }else{
+        return true;
+    }
+}
 /****************************************************************************************************************************************
  函数简介     UTF-8与GB2312转换
  
