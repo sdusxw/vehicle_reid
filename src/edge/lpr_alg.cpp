@@ -127,6 +127,9 @@ bool vlpr_analyze(const unsigned char *pImage, int len, PVPR pVPR)
     }
     if(nRet == 0)
     {
+        if (nResultNum == 0) {
+            return false;
+        }
         //车牌结果输出
         strcpy(pVPR->license, result[0].license);
         //车牌颜色处理
