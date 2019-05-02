@@ -53,6 +53,7 @@ public:
     char * p;
     int len;
     string filename;
+    string lpr_res_json;
 };
 
 ServerConf server_conf;
@@ -84,7 +85,7 @@ string dump_headers(const Headers &headers) {
     return s;
 }
 
-void save_file(const char * file_content, int len, string file_name)
+void save_file(const char * file_content, int len, string file_name, string lpr_res_json)
 {
     string path="",file="";
     if (split_filename(file_name, path, file)) {
@@ -110,6 +111,18 @@ void save_file(const char * file_content, int len, string file_name)
         free((void*)file_content);
         file_content = NULL;
     }
+    //保存识别结果json文件
+    string json_name = file_name + ".json";
+    ofstream json_output( json_name, ios::out | ios::binary );
+    if( ! json_output )
+    {
+        cerr << "Open json_output file error!" << endl;
+        return;
+    }
+    
+    json_output.write (lpr_res_json.c_str(), lpr_res_json.length());
+    
+    json_output.close();
 }
 
 string dump_multipart_files(const MultipartFiles &files) {
@@ -191,7 +204,7 @@ void task_save_file()
     while (true) {
         FileInfo file_info;
         g_file_queue.wait_and_pop(file_info);
-        save_file((const char*)file_info.p, file_info.len, file_info.filename);
+        save_file((const char*)file_info.p, file_info.len, file_info.filename, file_info.lpr_res_json);
     }
 }
 
@@ -300,6 +313,7 @@ int main(int argc, const char **argv) {
             Json::Value array;
             array.append(json_results);
             json_res["results"]=array;
+            file_name += ".x.jpg";
         }
         std::unique_ptr<Json::StreamWriter> jsonWriter(writerBuilder.newStreamWriter());
         jsonWriter->write(json_res, &os);
@@ -309,6 +323,7 @@ int main(int argc, const char **argv) {
         file_info.len = file_len;
         file_info.p = (char*)malloc(file_len);
         file_info.filename = file_name;
+        file_info.lpr_res_json = body;
         g_file_queue.push(file_info);
     });
     
