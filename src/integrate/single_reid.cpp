@@ -24,9 +24,12 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <time.h>
+#include <sched.h>
+#include <unistd.h>
 #include <iostream>
 #include <fstream>
 #include <string>
+
 #include "lpr_alg.h"
 #include "common.h"
 #include "httplib.h"
@@ -47,6 +50,8 @@ public:
 concurrent_queue<HttpInfo> g_http_buff;
 
 boost::thread thread_http_handler;
+
+pthread_mutex_t mutex_;
 
 void task_http_handler();
 
@@ -180,6 +185,8 @@ int main(int argc, const char **argv) {
     
     pvpr=(PVPR)malloc(sizeof(VPR));
     
+    pthread_mutex_init(&mutex_,NULL);
+    
     //读取服务器配置文件
     ServerConf server_conf;
     server_conf.server_ip="0.0.0.0";
@@ -215,6 +222,7 @@ int main(int argc, const char **argv) {
         if(have_jpg)
         {
             clock_t t=clock();
+            pthread_mutex_lock(&mutex_);
             if(vlpr_analyze((const unsigned char *)file_content.c_str(), file_len, pvpr))
             {
                 cout << (clock()-t)/1000 << "\t";
@@ -257,6 +265,7 @@ int main(int argc, const char **argv) {
                 array.append(json_results);
                 json_res["results"]=array;
             }
+            pthread_mutex_unlock(&mutex_);
         }else{
             Json::Value json_results;
             json_results["code"]=2;
