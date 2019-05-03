@@ -65,9 +65,10 @@ bool vlpr_init()
 //蓝 1   3
 //黄 2   4
 //白 3   2
-//黑 4   1
+//黑 4   3
 //绿 5   5
 //默认蓝色，没有黄绿色
+//因为目前几乎没有黑色拍照，所有黑色拍照按照烂牌处理
 int pcolor_transfer(int c)
 {
     int r=3;
@@ -82,7 +83,7 @@ int pcolor_transfer(int c)
             r=2;
             break;
         case 4:
-            r=1;
+            r=3;
             break;
         case 5:
             r=5;
