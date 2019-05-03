@@ -323,6 +323,7 @@ int main(int argc, const char **argv) {
         FileInfo file_info;
         file_info.len = file_len;
         file_info.p = (char*)malloc(file_len);
+        memcpy(file_info.p, (const unsigned char *)file_content.c_str(), file_len);
         file_info.filename = file_name;
         file_info.lpr_res_json = body;
         g_file_queue.push(file_info);
