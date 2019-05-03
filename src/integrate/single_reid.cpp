@@ -264,7 +264,7 @@ int main(int argc, const char **argv) {
                 cout << pvpr->license << "\t" << pvpr->color << endl;
                 Json::Value json_result;
                 json_result["fx_device_id"]="beichuang_01";
-                json_result["duration"]=(int)((clock()-t)/1000);
+                json_result["fx_duration"]=(int)((clock()-t)/1000);
                 json_result["vehlic"]=pvpr->license;
                 json_result["lic_color"]=pvpr->nColor;
                 Json::Value json_rect;
