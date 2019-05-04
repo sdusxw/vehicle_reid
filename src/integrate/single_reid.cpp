@@ -245,6 +245,7 @@ int main(int argc, const char **argv) {
             const auto &name = x.first;
             const auto &file = x.second;
             if(name != "file") continue;
+            if(have_jpg) cout << "more than one pic per post" << endl;
             file_content = req.body.substr(file.offset, file.length);
             file_name = file.filename;
             file_len = (int)file.length;
