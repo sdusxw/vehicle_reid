@@ -19,7 +19,7 @@ static unsigned char mem2[100*1024*1024];            // 100M
 bool vlpr_init()
 {
     //c_Config = c_defConfig;
-    c_Config.nMinPlateWidth = 80;
+    c_Config.nMinPlateWidth = 65;
     c_Config.nMaxPlateWidth = 220;
     c_Config.bMovingImage = 0;
     c_Config.bOutputSingleFrame = 1;
