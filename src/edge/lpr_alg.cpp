@@ -55,7 +55,7 @@ bool vlpr_init()
     TH_SetEnableCarTypeClassify(0, &c_Config);
     TH_SetEnableCarLogo( 0, &c_Config);
     TH_SetEnableCarWidth( 0, &c_Config);
-    TH_SetProvinceOrder((char*)default_province, &c_Config);
+    //TH_SetProvinceOrder((char*)default_province, &c_Config);
     
     //TH_SetRecogThreshold( 5, 1, &c_Config);
     //TH_SetDayNightMode( 1, &c_Config );
@@ -115,10 +115,10 @@ bool vlpr_analyze(const unsigned char *pImage, int len, PVPR pVPR)
     TH_PlateIDResult result[6];
     int nResultNum=1;
     TH_RECT roi_rect;
-    roi_rect.left= (int)w*0.1;
-    roi_rect.right=(int)w*0.9;
-    roi_rect.top = (int)h*0.3;
-    roi_rect.bottom = (int)h*0.95;
+    roi_rect.left= (int)w*0.05;
+    roi_rect.right=(int)w*0.95;
+    roi_rect.top = (int)h*0.1;
+    roi_rect.bottom = (int)h*0.98;
     int nRet=TH_RecogImage(rgb_buf, w, h,  result, &nResultNum, &roi_rect, &c_Config);
     //识别之后释放RGB缓存
     if(rgb_buf)
