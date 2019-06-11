@@ -36,6 +36,6 @@ SET(LIBRARY_OUTPUT_PATH ${lib_dir}/lib)
 # add subdirectories
 #add_subdirectory(cloud)
 add_subdirectory(common)
-add_subdirectory(edge)
+#add_subdirectory(edge)
 #add_subdirectory(deeplpr)
 add_subdirectory(integrate)
