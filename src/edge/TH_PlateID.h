@@ -1,3 +1,18 @@
+// ***************************************************************
+//  TH_PlateID.h   version:  4.0     date: 2010.4.12
+//  -------------------------------------------------------------
+//  Çå»ª´óÑ§ÖÇÄÜÍ¼ÎÄĞÅÏ¢´¦ÀíÑĞ¾¿ÊÒ¡£°æÈ¨ËùÓĞ¡£
+//  -------------------------------------------------------------
+//  Center for Intelligent Image and Document Information Processing
+//  -------------------------------------------------------------
+//  Copyright (C) 2007 - All Rights Reserved
+// ***************************************************************
+//   Author: Liu CS, Zhou J
+// ***************************************************************
+//		Revision history:
+//			2010.4.12: v4.0, TH_PlateID³µÅÆÊ¶±ğSDKµÄ½Ó¿Ú
+// ***************************************************************
+
 #ifndef __TH_PLATEID_H_INCLUDE__
 #define __TH_PLATEID_H_INCLUDE__
 
@@ -12,57 +27,61 @@ extern "C" {
 #endif
 
 
-//è½¦ç‰Œé¢œè‰²
-#define LC_UNKNOWN  0	// æœªçŸ¥
-#define LC_BLUE   1		// è“è‰²
-#define LC_YELLOW 2		// é»„è‰²
-#define LC_WHITE  3		// ç™½è‰²
-#define LC_BLACK  4		// é»‘è‰²
-#define LC_GREEN  5		// ç»¿è‰²
+//³µÅÆÑÕÉ«
+#define LC_UNKNOWN  0	// Î´Öª
+#define LC_BLUE   1		// À¶É«
+#define LC_YELLOW 2		// »ÆÉ«
+#define LC_WHITE  3		// °×É«
+#define LC_BLACK  4		// ºÚÉ«
+#define LC_GREEN  5		// ÂÌÉ«
+#define LC_YELLOWGREEN  6	//»ÆÂÌÉ«-´óĞÍĞÂÄÜÔ´³µÅÆÑÕÉ«
 	
-//è½¦ç‰Œç±»å‹
-#define LT_UNKNOWN  0   //æœªçŸ¥è½¦ç‰Œ
-#define LT_BLUE     1   //è“ç‰Œ
-#define LT_BLACK    2   //é»‘ç‰Œ
-#define LT_YELLOW   3   //å•æ’é»„ç‰Œ
-#define LT_YELLOW2  4   //åŒæ’é»„ç‰Œï¼ˆå¤§è½¦å°¾ç‰Œï¼Œå†œç”¨è½¦ï¼‰
-#define LT_POLICE   5   //è­¦è½¦è½¦ç‰Œ
-#define LT_ARMPOL   6   //æ­¦è­¦è½¦ç‰Œ
-#define LT_INDIVI   7   //ä¸ªæ€§åŒ–è½¦ç‰Œ
-#define LT_ARMY     8   //å•æ’å†›è½¦
-#define LT_ARMY2    9   //åŒæ’å†›è½¦
-#define LT_EMBASSY  10  //ä½¿é¦†ç‰Œ
-#define LT_HONGKONG 11  //é¦™æ¸¯ç‰Œ
-#define LT_TRACTOR  12  //æ‹–æ‹‰æœº
-#define LT_MACAU    13  //æ¾³é—¨ç‰Œ
-#define LT_CHANGNEI 14  //å‚å†…ç‰Œ
-#define LT_MINHANG  15  //æ°‘èˆªç‰Œ
-#define LT_CONSULATE 16 //é¢†äº‹é¦†è½¦ç‰Œ
-#define LT_NEWENERGY 17 //æ–°èƒ½æºè½¦ç‰Œ
+//³µÅÆÀàĞÍ
+#define LT_UNKNOWN  0   //Î´Öª³µÅÆ
+#define LT_BLUE     1   //À¶ÅÆ
+#define LT_BLACK    2   //ºÚÅÆ
+#define LT_YELLOW   3   //µ¥ÅÅ»ÆÅÆ
+#define LT_YELLOW2  4   //Ë«ÅÅ»ÆÅÆ£¨´ó³µÎ²ÅÆ£¬Å©ÓÃ³µ£©
+#define LT_POLICE   5   //¾¯³µ³µÅÆ
+#define LT_ARMPOL   6   //Îä¾¯³µÅÆ
+#define LT_INDIVI   7   //¸öĞÔ»¯³µÅÆ
+#define LT_ARMY     8   //µ¥ÅÅ¾ü³µ
+#define LT_ARMY2    9   //Ë«ÅÅ¾ü³µ
+#define LT_EMBASSY  10  //Ê¹¹İÅÆ
+#define LT_HONGKONG 11  //Ïã¸ÛÅÆ
+#define LT_TRACTOR  12  //ÍÏÀ­»ú
+#define LT_MACAU    13  //°ÄÃÅÅÆ
+#define LT_CHANGNEI 14  //³§ÄÚÅÆ
+#define LT_MINHANG  15  //Ãñº½ÅÆ
+#define LT_CONSULATE 16 //ÁìÊÂ¹İ³µÅÆ
+#define LT_NEWENERGY 17 //ĞÂÄÜÔ´³µÅÆ-Ğ¡ĞÍ³µ
+#define LT_NEWENERGY2 18 //ĞÂÄÜÔ´³µÅÆ-´óĞÍ³µ
+#define LT_CHANGCHE 19  //³§³µÅÆ
+#define LT_EMERGENCY 20	//Ó¦¼±¾ÈÔ®³µÅÆ
 
-//è½¦è¾†é¢œè‰²
-#define LGRAY_DARK	0	//æ·±
-#define LGRAY_LIGHT	1	//æµ…
+//³µÁ¾ÑÕÉ«
+#define LGRAY_DARK	0	//Éî
+#define LGRAY_LIGHT	1	//Ç³
 
-#define LCOLOUR_WHITE	0	//ç™½	
-#define LCOLOUR_SILVER	1	//ç°(é“¶)
-#define LCOLOUR_YELLOW	2	//é»„
-#define LCOLOUR_PINK	3	//ç²‰
-#define LCOLOUR_RED		4	//çº¢
-#define LCOLOUR_GREEN	5	//ç»¿
-#define LCOLOUR_BLUE	6	//è“
-#define LCOLOUR_BROWN	7	//æ£• 
-#define LCOLOUR_BLACK	8	//é»‘
+#define LCOLOUR_WHITE	0	//°×	
+#define LCOLOUR_SILVER	1	//»Ò(Òø)
+#define LCOLOUR_YELLOW	2	//»Æ
+#define LCOLOUR_PINK	3	//·Û
+#define LCOLOUR_RED		4	//ºì
+#define LCOLOUR_GREEN	5	//ÂÌ
+#define LCOLOUR_BLUE	6	//À¶
+#define LCOLOUR_BROWN	7	//×Ø 
+#define LCOLOUR_BLACK	8	//ºÚ
 
 
-//è¿åŠ¨æ–¹å‘
+//ÔË¶¯·½Ïò
 #define DIRECTION_UNKNOWN	0
 #define DIRECTION_LEFT	1
 #define DIRECTION_RIGHT	2
 #define DIRECTION_UP	3
 #define DIRECTION_DOWN	4
 
-//å›¾åƒæ ¼å¼ï¼ˆTH_SetImageFormatå‡½æ•°çš„cImageFormatå‚æ•°ï¼‰
+//Í¼Ïñ¸ñÊ½£¨TH_SetImageFormatº¯ÊıµÄcImageFormat²ÎÊı£©
 #define ImageFormatRGB		0			//RGBRGBRGB...
 #define ImageFormatBGR		1			//BGRBGRBGR...
 #define ImageFormatYUV422	2			//YYYY...UU...VV..	(YV16)
@@ -71,87 +90,91 @@ extern "C" {
 #define ImageFormatUYVY	    5			//UYVYUYVYUYVY...	(UYVY)
 #define ImageFormatNV21		6			//YYYY...VU...		(NV21)
 #define ImageFormatYV12		7			//YYYY...V...U		(YV12)
-#define ImageFormatNV16     8           //YYYY...UVUV...    (NV16æˆ–YUV422SP) UVåˆ—æ–¹å‘æŠ½æ ·ï¼Œè¡Œæ–¹å‘ä¸å˜ 
+#define ImageFormatNV16     8           //YYYY...UVUV...    (NV16»òYUV422SP) UVÁĞ·½Ïò³éÑù£¬ĞĞ·½Ïò²»±ä 
 
-//è½¦ç‰Œç±»å‹æ”¯æŒè®¾ç½®å®šä¹‰
-//ï¼ˆTH_SetEnabledPlateFormatå‡½æ•°çš„dFormatå‚æ•°ï¼‰
-#define PARAM_INDIVIDUAL_ON          0		// ä¸ªæ€§åŒ–è½¦ç‰Œå¼€å¯
-#define PARAM_INDIVIDUAL_OFF         1		// ä¸ªæ€§åŒ–è½¦ç‰Œå…³é—­
-#define PARAM_TWOROWYELLOW_ON	     2		// åŒå±‚é»„è‰²è½¦ç‰Œå¼€å¯
-#define PARAM_TWOROWYELLOW_OFF	     3		// åŒå±‚é»„è‰²è½¦ç‰Œå…³é—­
-#define PARAM_ARMPOLICE_ON           4		// å•å±‚æ­¦è­¦è½¦ç‰Œå¼€å¯
-#define PARAM_ARMPOLICE_OFF          5		// å•å±‚æ­¦è­¦è½¦ç‰Œå…³é—­
-#define PARAM_TWOROWARMY_ON          6		// åŒå±‚å†›é˜Ÿè½¦ç‰Œå¼€å¯
-#define PARAM_TWOROWARMY_OFF         7		// åŒå±‚å†›é˜Ÿè½¦ç‰Œå…³é—­
-#define PARAM_TRACTOR_ON			 8		// å†œç”¨è½¦è½¦ç‰Œå¼€å¯
-#define PARAM_TRACTOR_OFF			 9		// å†œç”¨è½¦è½¦ç‰Œå…³é—­
-#define PARAM_ONLY_TWOROWYELLOW_ON   10		// åªè¯†åˆ«åŒå±‚é»„ç‰Œå¼€å¯
-#define PARAM_ONLY_TWOROWYELLOW_OFF  11		// åªè¯†åˆ«åŒå±‚é»„ç‰Œå…³é—­
-#define PARAM_EMBASSY_ON			 12		// ä½¿é¦†è½¦ç‰Œå¼€å¯
-#define PARAM_EMBASSY_OFF			 13		// ä½¿é¦†è½¦ç‰Œå…³é—­
-#define PARAM_ONLY_LOCATION_ON		 14		// åªå®šä½è½¦ç‰Œå¼€å¯
-#define PARAM_ONLY_LOCATION_OFF		 15		// åªå®šä½è½¦ç‰Œå…³é—­
-#define PARAM_ARMPOLICE2_ON			 16		// åŒå±‚æ­¦è­¦è½¦ç‰Œå¼€å¯
-#define PARAM_ARMPOLICE2_OFF		 17		// åŒå±‚æ­¦è­¦è½¦ç‰Œå…³é—­
-#define PARAM_CHANGNEI_ON			 18		// å‚å†…è½¦ç‰Œå¼€å¯
-#define PARAM_CHANGNEI_OFF			 19		// å‚å†…è½¦ç‰Œå…³é—­
-#define PARAM_MINHANG_ON			 20		// æ°‘èˆªè½¦ç‰Œå¼€å¯
-#define PARAM_MINHANG_OFF			 21		// æ°‘èˆªè½¦ç‰Œå…³é—­
-#define PARAM_CONSULATE_ON           22     // é¢†äº‹é¦†è½¦ç‰Œå¼€å¯
-#define PARAM_CONSULATE_OFF          23     // é¢†äº‹é¦†è½¦ç‰Œå…³é—­
-#define PARAM_NEWENERGY_ON           24     // æ–°èƒ½æºè½¦ç‰Œå¼€å¯
-#define PARAM_NEWENERGY_OFF          25     // æ–°èƒ½æºè½¦ç‰Œå…³é—­
+//³µÅÆÀàĞÍÖ§³ÖÉèÖÃ¶¨Òå
+//£¨TH_SetEnabledPlateFormatº¯ÊıµÄdFormat²ÎÊı£©
+#define PARAM_INDIVIDUAL_ON          0		// ¸öĞÔ»¯³µÅÆ¿ªÆô
+#define PARAM_INDIVIDUAL_OFF         1		// ¸öĞÔ»¯³µÅÆ¹Ø±Õ
+#define PARAM_TWOROWYELLOW_ON	     2		// Ë«²ã»ÆÉ«³µÅÆ¿ªÆô
+#define PARAM_TWOROWYELLOW_OFF	     3		// Ë«²ã»ÆÉ«³µÅÆ¹Ø±Õ
+#define PARAM_ARMPOLICE_ON           4		// µ¥²ãÎä¾¯³µÅÆ¿ªÆô
+#define PARAM_ARMPOLICE_OFF          5		// µ¥²ãÎä¾¯³µÅÆ¹Ø±Õ
+#define PARAM_TWOROWARMY_ON          6		// Ë«²ã¾ü¶Ó³µÅÆ¿ªÆô
+#define PARAM_TWOROWARMY_OFF         7		// Ë«²ã¾ü¶Ó³µÅÆ¹Ø±Õ
+#define PARAM_TRACTOR_ON			 8		// Å©ÓÃ³µ³µÅÆ¿ªÆô
+#define PARAM_TRACTOR_OFF			 9		// Å©ÓÃ³µ³µÅÆ¹Ø±Õ
+#define PARAM_ONLY_TWOROWYELLOW_ON   10		// Ö»Ê¶±ğË«²ã»ÆÅÆ¿ªÆô
+#define PARAM_ONLY_TWOROWYELLOW_OFF  11		// Ö»Ê¶±ğË«²ã»ÆÅÆ¹Ø±Õ
+#define PARAM_EMBASSY_ON			 12		// Ê¹¹İ³µÅÆ¿ªÆô
+#define PARAM_EMBASSY_OFF			 13		// Ê¹¹İ³µÅÆ¹Ø±Õ
+#define PARAM_ONLY_LOCATION_ON		 14		// Ö»¶¨Î»³µÅÆ¿ªÆô
+#define PARAM_ONLY_LOCATION_OFF		 15		// Ö»¶¨Î»³µÅÆ¹Ø±Õ
+#define PARAM_ARMPOLICE2_ON			 16		// Ë«²ãÎä¾¯³µÅÆ¿ªÆô
+#define PARAM_ARMPOLICE2_OFF		 17		// Ë«²ãÎä¾¯³µÅÆ¹Ø±Õ
+#define PARAM_CHANGNEI_ON			 18		// ³§ÄÚ³µÅÆ¿ªÆô
+#define PARAM_CHANGNEI_OFF			 19		// ³§ÄÚ³µÅÆ¹Ø±Õ
+#define PARAM_MINHANG_ON			 20		// Ãñº½³µÅÆ¿ªÆô
+#define PARAM_MINHANG_OFF			 21		// Ãñº½³µÅÆ¹Ø±Õ
+#define PARAM_CONSULATE_ON           22     // ÁìÊÂ¹İ³µÅÆ¿ªÆô
+#define PARAM_CONSULATE_OFF          23     // ÁìÊÂ¹İ³µÅÆ¹Ø±Õ
+#define PARAM_NEWENERGY_ON           24     // ĞÂÄÜÔ´³µÅÆ¿ªÆô
+#define PARAM_NEWENERGY_OFF          25     // ĞÂÄÜÔ´³µÅÆ¹Ø±Õ
+#define	PARAM_CHANGCHE_ON			 26     // ³§³µÅÆ¿ªÆô
+#define	PARAM_CHANGCHE_OFF			 27     // ³§³µÅÆ¹Ø±Õ
+#define	PARAM_EMERGENCY_ON			 28		// Ó¦¼±³µÅÆ¿ªÆô
+#define	PARAM_EMERGENCY_OFF			 29		// Ó¦¼±³µÅÆ¹Ø±Õ
 
-#define RECOG_STAGE_ALL			0		// æ— é”™è¯¯
-#define RECOG_STAGE_FINDPLATE	1		// æ²¡æœ‰æ‰¾åˆ°è½¦ç‰Œ
-#define RECOG_STAGE_PLATESCORE_ZERO	2	// è½¦ç‰Œè¯„ä»·å€¼(0åˆ†)
-#define RECOG_STAGE_PLATESCORE_LOW	3	// è½¦ç‰Œè¯„ä»·å€¼(ä¸åŠæ ¼)
-#define RECOG_STAGE_RECOGSCORE_ZERO	4	// è½¦ç‰Œè¯†åˆ«åˆ†æ•°(0åˆ†)
-#define RECOG_STAGE_RECOGSCORE_LOW	5	// è½¦ç‰Œè¯†åˆ«åˆ†æ•°(ä¸åŠæ ¼)
+#define RECOG_STAGE_ALL			0		// ÎŞ´íÎó
+#define RECOG_STAGE_FINDPLATE	1		// Ã»ÓĞÕÒµ½³µÅÆ
+#define RECOG_STAGE_PLATESCORE_ZERO	2	// ³µÅÆÆÀ¼ÛÖµ(0·Ö)
+#define RECOG_STAGE_PLATESCORE_LOW	3	// ³µÅÆÆÀ¼ÛÖµ(²»¼°¸ñ)
+#define RECOG_STAGE_RECOGSCORE_ZERO	4	// ³µÅÆÊ¶±ğ·ÖÊı(0·Ö)
+#define RECOG_STAGE_RECOGSCORE_LOW	5	// ³µÅÆÊ¶±ğ·ÖÊı(²»¼°¸ñ)
 
 	
-//è½¦æ ‡ç±»å‹
-#define CarLogo_UNKNOWN       0    //æœªçŸ¥
-#define CarLogo_AUDI          1    //å¥¥è¿ª
-#define CarLogo_BMW           2    //å®é©¬
-#define CarLogo_BENZ          3    //å¥”é©°
-#define CarLogo_HONDA         4    //æœ¬ç”°
-#define CarLogo_PEUGEOT       5    //æ ‡å¿—
-#define CarLogo_BUICK         6    //åˆ«å…‹
-#define CarLogo_DASAUTO       7    //å¤§ä¼—
-#define CarLogo_TOYOTA        8    //ä¸°ç”°
-#define CarLogo_FORD          9    //ç¦ç‰¹
-#define CarLogo_SUZUKI        10   //é“ƒæœ¨
-#define CarLogo_MAZDA         11   //é©¬è‡ªè¾¾
-#define CarLogo_KIA           12   //èµ·äºš
-#define CarLogo_NISSAN        13   //æ—¥äº§å°¼æ¡‘
-#define CarLogo_HYUNDAI       14   //ç°ä»£
-#define CarLogo_CHEVROLET     15   //é›ªä½›å…°
-#define CarLogo_CITROEN       16   //é›ªé“é¾™
+//³µ±êÀàĞÍ
+#define CarLogo_UNKNOWN       0    //Î´Öª
+#define CarLogo_AUDI          1    //°ÂµÏ
+#define CarLogo_BMW           2    //±¦Âí
+#define CarLogo_BENZ          3    //±¼³Û
+#define CarLogo_HONDA         4    //±¾Ìï
+#define CarLogo_PEUGEOT       5    //±êÖ¾
+#define CarLogo_BUICK         6    //±ğ¿Ë
+#define CarLogo_DASAUTO       7    //´óÖÚ
+#define CarLogo_TOYOTA        8    //·áÌï
+#define CarLogo_FORD          9    //¸£ÌØ
+#define CarLogo_SUZUKI        10   //ÁåÄ¾
+#define CarLogo_MAZDA         11   //Âí×Ô´ï
+#define CarLogo_KIA           12   //ÆğÑÇ
+#define CarLogo_NISSAN        13   //ÈÕ²úÄáÉ£
+#define CarLogo_HYUNDAI       14   //ÏÖ´ú
+#define CarLogo_CHEVROLET     15   //Ñ©·ğÀ¼
+#define CarLogo_CITROEN       16   //Ñ©ÌúÁú
 
-#define CarLogo_QIRUI         17   //å¥‡ç‘
-#define CarLogo_WULING        18   //äº”è±
-#define CarLogo_DONGFENG      19   //ä¸œé£
-#define CarLogo_JIANGHUAI     20   //æ±Ÿæ·®
-#define CarLogo_BEIQI         21   //åŒ—æ±½
-#define CarLogo_CHANGAN       22   //é•¿å®‰
-#define CarLogo_AOCHI         23   //å¥¥é©°
-#define CarLogo_SHAOLING      24   //å°‘æ—
-#define CarLogo_SHANQI        25   //é™•æ±½
-#define CarLogo_SANLING       26   //ä¸‰è±
-#define CarLogo_JILI          27   //å‰åˆ©
-#define CarLogo_HAOWO         28   //è±ªæ²ƒ
-#define CarLogo_HAIMA         29   //æµ·é©¬
-#define CarLogo_HAFEI         30   //å“ˆé£
-#define CarLogo_CHANGCHENG    31   //é•¿åŸ
-#define CarLogo_FUTIAN        32   //ç¦ç”°
-#define CarLogo_NANJUN        33   //å—éª
-#define CarLogo_LIUQI         34   //æŸ³æ±½
+#define CarLogo_QIRUI         17   //ÆæÈğ
+#define CarLogo_WULING        18   //ÎåÁâ
+#define CarLogo_DONGFENG      19   //¶«·ç
+#define CarLogo_JIANGHUAI     20   //½­»´
+#define CarLogo_BEIQI         21   //±±Æû
+#define CarLogo_CHANGAN       22   //³¤°²
+#define CarLogo_AOCHI         23   //°Â³Û
+#define CarLogo_SHAOLING      24   //ÉÙÁÖ
+#define CarLogo_SHANQI        25   //ÉÂÆû
+#define CarLogo_SANLING       26   //ÈıÁâ
+#define CarLogo_JILI          27   //¼ªÀû
+#define CarLogo_HAOWO         28   //ºÀÎÖ
+#define CarLogo_HAIMA         29   //º£Âí
+#define CarLogo_HAFEI         30   //¹ş·É
+#define CarLogo_CHANGCHENG    31   //³¤³Ç
+#define CarLogo_FUTIAN        32   //¸£Ìï
+#define CarLogo_NANJUN        33   //ÄÏ¿¥
+#define CarLogo_LIUQI         34   //ÁøÆû
 
-// è½¦è¾†ç±»å‹
-#define CARTYPE_UNKNOWN		0	// æœªçŸ¥
-#define CARTYPE_SALOON		1	// è½¿è½¦
-#define CARTYPE_VAN			2	// é¢åŒ…è½¦
+// ³µÁ¾ÀàĞÍ
+#define CARTYPE_UNKNOWN		0	// Î´Öª
+#define CARTYPE_SALOON		1	// ½Î³µ
+#define CARTYPE_VAN			2	// Ãæ°ü³µ
 
 typedef struct TH_RECT
 {
@@ -164,48 +187,47 @@ typedef struct TH_RECT
 
 typedef struct TH_PlateIDCfg
 {
-	int nMinPlateWidth;					// æ£€æµ‹çš„æœ€å°è½¦ç‰Œå®½åº¦ï¼Œä»¥åƒç´ ä¸ºå•ä½
-	int nMaxPlateWidth;					// æ£€æµ‹çš„æœ€å¤§è½¦ç‰Œå®½åº¦ï¼Œä»¥åƒç´ ä¸ºå•ä½
+	int nMinPlateWidth;					// ¼ì²âµÄ×îĞ¡³µÅÆ¿í¶È£¬ÒÔÏñËØÎªµ¥Î»
+	int nMaxPlateWidth;					// ¼ì²âµÄ×î´ó³µÅÆ¿í¶È£¬ÒÔÏñËØÎªµ¥Î»
 	
-	int nMaxImageWidth;					// æœ€å¤§å›¾åƒå®½åº¦
-	int nMaxImageHeight;				// æœ€å¤§å›¾åƒé«˜åº¦
+	int nMaxImageWidth;					// ×î´óÍ¼Ïñ¿í¶È
+	int nMaxImageHeight;				// ×î´óÍ¼Ïñ¸ß¶È
 
-	unsigned char bVertCompress;		// æ˜¯å¦å‚ç›´æ–¹å‘å‹ç¼©1å€åè¯†åˆ«
-	unsigned char bIsFieldImage;		// æ˜¯å¦æ˜¯åœºå›¾åƒ
-	unsigned char bOutputSingleFrame;	// æ˜¯å¦è§†é¢‘å›¾åƒä¸­åŒä¸€ä¸ªè½¦çš„å¤šå¹…å›¾åƒåªè¾“å‡ºä¸€æ¬¡ç»“æœ		
-	unsigned char bMovingImage;			// è¯†åˆ«è¿åŠ¨oré™æ­¢å›¾åƒ
+	unsigned char bVertCompress;		// ÊÇ·ñ´¹Ö±·½ÏòÑ¹Ëõ1±¶ºóÊ¶±ğ
+	unsigned char bIsFieldImage;		// ÊÇ·ñÊÇ³¡Í¼Ïñ
+	unsigned char bOutputSingleFrame;	// ÊÇ·ñÊÓÆµÍ¼ÏñÖĞÍ¬Ò»¸ö³µµÄ¶à·ùÍ¼ÏñÖ»Êä³öÒ»´Î½á¹û		
+	unsigned char bMovingImage;			// Ê¶±ğÔË¶¯or¾²Ö¹Í¼Ïñ
 
 	unsigned char bIsNight;
 	unsigned char nImageFormat;
 
-	unsigned char * pFastMemory;		// DSPç­‰çš„ç‰‡å†…å†…å­˜ï¼Œè€—æ—¶å¤šçš„è¿ç®—ä¼˜å…ˆä½¿ç”¨è¿™äº›å†…å­˜
-	int nFastMemorySize;				// å¿«é€Ÿå†…å­˜çš„å¤§å°
+	unsigned char * pFastMemory;		// DSPµÈµÄÆ¬ÄÚÄÚ´æ£¬ºÄÊ±¶àµÄÔËËãÓÅÏÈÊ¹ÓÃÕâĞ©ÄÚ´æ
+	int nFastMemorySize;				// ¿ìËÙÄÚ´æµÄ´óĞ¡
 
-	unsigned char *pMemory;				// æ™®é€šå†…å­˜çš„åœ°å€ï¼Œå†…å»ºçš„å†…å­˜ç®¡ç†ï¼Œé¿å…å†…å­˜æ³„æ¼ç­‰é—®é¢˜
-	int nMemorySize;					// æ™®é€šå†…å­˜çš„å¤§å°
+	unsigned char *pMemory;				// ÆÕÍ¨ÄÚ´æµÄµØÖ·£¬ÄÚ½¨µÄÄÚ´æ¹ÜÀí£¬±ÜÃâÄÚ´æĞ¹Â©µÈÎÊÌâ
+	int nMemorySize;					// ÆÕÍ¨ÄÚ´æµÄ´óĞ¡
 
 	int (*DMA_DataCopy)(void *dst, void *src,int nSize);
 	int (*Check_DMA_Finished)();
 
-	int nLastError;			// ç”¨äºä¼ é€’é”™è¯¯ä¿¡æ¯
-							// 0: æ— é”™è¯¯
-							// 1: FindPlate(æ²¡æœ‰æ‰¾åˆ°è½¦ç‰Œ)
-							// 2: è½¦ç‰Œè¯„ä»·å€¼(0åˆ†)
-							// 3: è½¦ç‰Œè¯„ä»·å€¼(ä¸åŠæ ¼)
-							// 4: è½¦ç‰Œè¯†åˆ«åˆ†æ•°(0åˆ†)
-	                        // 5: è½¦ç‰Œè¯†åˆ«åˆ†æ•°(ä¸åŠæ ¼)
-	int nErrorModelSN;		// å‡ºé”™çš„æ¨¡å—ç¼–å·
-	unsigned char nOrderOpt;			//è¾“å‡ºé¡ºåºé€‰é¡¹ 0-ç½®ä¿¡åº¦ 1-è‡ªä¸Šè€Œä¸‹ 2-è‡ªä¸‹è€Œä¸Š
-	unsigned char bLeanCorrection;		// æ˜¯å¦å¯ç”¨è½¦ç‰Œæ—‹è½¬åŠŸèƒ½ï¼Œé»˜è®¤å¼€å¯
-	unsigned char bMovingOutputOpt;   	// 0-å†…éƒ¨æ¨é€+å¤–éƒ¨è·å– 1:å¤–éƒ¨è·å–	
-	unsigned char nImproveSpeed;        // 0: è¯†åˆ«ç‡ä¼˜å…ˆ 1:è¯†åˆ«é€Ÿåº¦ä¼˜å…ˆ
-	unsigned char bCarLogo;             // 0: ä¸æ£€æµ‹è½¦æ ‡ 1: æ£€æµ‹è½¦æ ‡
-	unsigned char bLotDetect;			// 0: ä¸æ£€æµ‹è½¦ä½ 1: æ£€æµ‹è½¦ä½
-
-	unsigned char bShadow;              // 0: é’ˆå¯¹æ— é˜´å½±çš„è½¦ç‰Œ 1ï¼šé’ˆå¯¹æœ‰é˜´å½±çš„è½¦ç‰Œï¼Œé»˜è®¤å¼€å¯
-	unsigned char bUTF8;				// 0:æ±‰å­—GBK,1:æ±‰å­—UTF-8
-	unsigned char bShieldRailing;		// 0: å±è”½æ æ†å¹²æ‰°ï¼Œ 1:ä¸å±è”½æ æ†å¹²æ‰°
-	unsigned char bCarModel;		// 0: ä¸è¯†åˆ«è½¦å‹ï¼Œ 1: è¯†åˆ«è½¦å‹
+	int nLastError;			// ÓÃÓÚ´«µİ´íÎóĞÅÏ¢
+							// 0: ÎŞ´íÎó
+							// 1: FindPlate(Ã»ÓĞÕÒµ½³µÅÆ)
+							// 2: ³µÅÆÆÀ¼ÛÖµ(0·Ö)
+							// 3: ³µÅÆÆÀ¼ÛÖµ(²»¼°¸ñ)
+							// 4: ³µÅÆÊ¶±ğ·ÖÊı(0·Ö)
+	                        // 5: ³µÅÆÊ¶±ğ·ÖÊı(²»¼°¸ñ)
+	int nErrorModelSN;		// ³ö´íµÄÄ£¿é±àºÅ
+	unsigned char nOrderOpt;			//Êä³öË³ĞòÑ¡Ïî 0-ÖÃĞÅ¶È 1-×ÔÉÏ¶øÏÂ 2-×ÔÏÂ¶øÉÏ
+	unsigned char bLeanCorrection;		// ÊÇ·ñÆôÓÃ³µÅÆĞı×ª¹¦ÄÜ£¬Ä¬ÈÏ¿ªÆô
+	unsigned char bMovingOutputOpt;   	// 0-ÄÚ²¿ÍÆËÍ+Íâ²¿»ñÈ¡ 1:Íâ²¿»ñÈ¡	
+	unsigned char nImproveSpeed;        // 0: Ê¶±ğÂÊÓÅÏÈ 1:Ê¶±ğËÙ¶ÈÓÅÏÈ
+	unsigned char bCarLogo;             // 0: ²»¼ì²â³µ±ê 1: ¼ì²â³µ±ê
+	unsigned char bLotDetect;			// 0: ²»¼ì²â³µÎ» 1: ¼ì²â³µÎ»
+	unsigned char bShadow;              // 0: Õë¶ÔÎŞÒõÓ°µÄ³µÅÆ 1£ºÕë¶ÔÓĞÒõÓ°µÄ³µÅÆ£¬Ä¬ÈÏ¿ªÆô
+	unsigned char bUTF8;				// 0:ºº×ÖGBK,1:ºº×ÖUTF-8
+	unsigned char bShieldRailing;		// 0: ÆÁ±ÎÀ¸¸Ë¸ÉÈÅ£¬ 1:²»ÆÁ±ÎÀ¸¸Ë¸ÉÈÅ
+	unsigned char bCarModel;		// 0: ²»Ê¶±ğ³µĞÍ£¬ 1: Ê¶±ğ³µĞÍ
 	//char reserved[110];				// WIN_X86
 	char reserved[110+128];				// WIN_X64
 
@@ -214,182 +236,182 @@ typedef struct TH_PlateIDCfg
 
 typedef struct TH_PlateIDResult 
 {
-	char license[16];	// è½¦ç‰Œå­—ç¬¦ä¸²
-	char color[8];		// è½¦ç‰Œé¢œè‰²
+	char license[16];	// ³µÅÆ×Ö·û´®
+	char color[8];		// ³µÅÆÑÕÉ«
 
-	int nColor;			// è½¦ç‰Œé¢œè‰²
-	int nType;			// è½¦ç‰Œç±»å‹
-	int nConfidence;	// æ•´ç‰Œå¯ä¿¡åº¦
-	int nBright;		// äº®åº¦è¯„ä»·
-	int nDirection;		// è½¦ç‰Œè¿åŠ¨æ–¹å‘ï¼Œ0 unknown, 1 left, 2 right, 3 up, 4 down 
+	int nColor;			// ³µÅÆÑÕÉ«
+	int nType;			// ³µÅÆÀàĞÍ
+	int nConfidence;	// ÕûÅÆ¿ÉĞÅ¶È
+	int nBright;		// ÁÁ¶ÈÆÀ¼Û
+	int nDirection;		// ³µÅÆÔË¶¯·½Ïò£¬0 unknown, 1 left, 2 right, 3 up, 4 down 
 	
-	TH_RECT rcLocation;				// è½¦ç‰Œåæ ‡
-	const unsigned char *pbyBits;	/* è¯¥è¯†åˆ«ç»“æœå¯¹åº”çš„å›¾ç‰‡çš„ç¼“å†²åŒº, åªæœ‰å½“ bOutputSingleFrame = true æ—¶ï¼Œè¯¥æŒ‡é’ˆæ‰æœ‰æ•ˆã€‚
-									ä¸‹æ¬¡è¯†åˆ«åï¼Œè¯¥ç¼“å†²åŒºå†…å®¹è¢«è¦†ç›–ã€‚è°ƒç”¨ç¨‹åºæ— éœ€é‡Šæ”¾è¯¥ç¼“å†²åŒºã€‚
-									ç¼“å†²åŒºå¤§å°ç­‰äºä¼ é€’è¿›æ¥çš„å›¾ç‰‡æ•°æ®çš„é•¿åº¦*/
-	int nTime;						// è¯†åˆ«è€—æ—¶
-	unsigned char nCarBright;		//è½¦çš„äº®åº¦
-	unsigned char nCarColor;		//è½¦çš„é¢œè‰²
-	unsigned char nCarLogo;         //è½¦æ ‡ç±»å‹
-	unsigned char nCarType;			//è½¦è¾†ç±»å‹
-	unsigned char *pbyPlateBin;     //è½¦ç‰ŒäºŒå€¼åŒ–ç»“æœï¼ˆæŒ‰bitå­˜å‚¨ï¼‰
-	unsigned short nBinPlateWidth;  //äºŒå€¼åŒ–ç»“æœä¸­è½¦ç‰Œå®½åº¦
-	unsigned short nBinPlateHeight; //äºŒå€¼åŒ–ç»“æœä¸­è½¦ç‰Œé«˜åº¦
-	char reserved[70];				//ä¿ç•™
-	TH_RECT rcLogoLocation;			// è½¦æ ‡åæ ‡
-	unsigned short nCarModel;		// è½¦è¾†ç±»å‹
-	unsigned short nCarModelConfidence;		//è½¦å‹å¯ä¿¡åº¦	
+	TH_RECT rcLocation;				// ³µÅÆ×ø±ê
+	const unsigned char *pbyBits;	/* ¸ÃÊ¶±ğ½á¹û¶ÔÓ¦µÄÍ¼Æ¬µÄ»º³åÇø, Ö»ÓĞµ± bOutputSingleFrame = true Ê±£¬¸ÃÖ¸Õë²ÅÓĞĞ§¡£
+									ÏÂ´ÎÊ¶±ğºó£¬¸Ã»º³åÇøÄÚÈİ±»¸²¸Ç¡£µ÷ÓÃ³ÌĞòÎŞĞèÊÍ·Å¸Ã»º³åÇø¡£
+									»º³åÇø´óĞ¡µÈÓÚ´«µİ½øÀ´µÄÍ¼Æ¬Êı¾İµÄ³¤¶È*/
+	int nTime;						// Ê¶±ğºÄÊ±
+	unsigned char nCarBright;		//³µµÄÁÁ¶È
+	unsigned char nCarColor;		//³µµÄÑÕÉ«
+	unsigned char nCarLogo;         //³µ±êÀàĞÍ
+	unsigned char nCarType;			//³µÁ¾ÀàĞÍ
+	unsigned char *pbyPlateBin;     //³µÅÆ¶şÖµ»¯½á¹û£¨°´bit´æ´¢£©
+	unsigned short nBinPlateWidth;  //¶şÖµ»¯½á¹ûÖĞ³µÅÆ¿í¶È
+	unsigned short nBinPlateHeight; //¶şÖµ»¯½á¹ûÖĞ³µÅÆ¸ß¶È
+	char reserved[70];				//±£Áô
+	TH_RECT rcLogoLocation;			// ³µ±ê×ø±ê
+	unsigned short nCarModel;		// ³µÁ¾ÀàĞÍ
+	unsigned short nCarModelConfidence;		//³µĞÍ¿ÉĞÅ¶È	
 }TH_PlateIDResult;
 
 
 /************************************************************************/
-/* TH_InitPlateIDSDK: åˆå§‹åŒ–è½¦ç‰Œè¯†åˆ«SDKï¼Œåœ¨ä½¿ç”¨è¯¥SDKçš„åŠŸèƒ½å‰			*/
-/*			å¿…éœ€ä¸”ä»…éœ€è°ƒç”¨ä¸€æ¬¡è¯¥å‡½æ•°									*/
+/* TH_InitPlateIDSDK: ³õÊ¼»¯³µÅÆÊ¶±ğSDK£¬ÔÚÊ¹ÓÃ¸ÃSDKµÄ¹¦ÄÜÇ°			*/
+/*			±ØĞèÇÒ½öĞèµ÷ÓÃÒ»´Î¸Ãº¯Êı									*/
 /*		Parameters:														*/
-/*			pPlateConfig[in]: è½¦ç‰Œè¯†åˆ«SDKçš„é…ç½®							*/
+/*			pPlateConfig[in]: ³µÅÆÊ¶±ğSDKµÄÅäÖÃ							*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_InitPlateIDSDK(TH_PlateIDCfg *pPlateConfig);
 
 /************************************************************************/
-/* TH_UninitPlateIDSDK: é‡Šæ”¾è½¦ç‰Œè¯†åˆ«SDKï¼Œåœ¨ä½¿ç”¨è¯¥SDKçš„åŠŸèƒ½å			*/
-/*			å¿…éœ€ä¸”ä»…éœ€è°ƒç”¨ä¸€æ¬¡è¯¥å‡½æ•°ï¼Œä»¥é‡Šæ”¾å†…å­˜ã€‚						*/
+/* TH_UninitPlateIDSDK: ÊÍ·Å³µÅÆÊ¶±ğSDK£¬ÔÚÊ¹ÓÃ¸ÃSDKµÄ¹¦ÄÜºó			*/
+/*			±ØĞèÇÒ½öĞèµ÷ÓÃÒ»´Î¸Ãº¯Êı£¬ÒÔÊÍ·ÅÄÚ´æ¡£						*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_UninitPlateIDSDK(TH_PlateIDCfg *pPlateCfg);
 
 /************************************************************************/
-/* TH_RecogImage: è¯†åˆ«å†…å­˜ä¸­è½¦ç‰Œå›¾åƒ(è¾“å‡ºè¯†åˆ«åˆ°çš„å¤šä¸ªç»“æœ)	*/
+/* TH_RecogImage: Ê¶±ğÄÚ´æÖĞ³µÅÆÍ¼Ïñ(Êä³öÊ¶±ğµ½µÄ¶à¸ö½á¹û)	*/
 /*		Parameters:														*/
-/*			pbyBits[in]: æŒ‡å‘å†…å­˜å›¾åƒæ•°æ®çš„æŒ‡é’ˆï¼Œ3ä¸ªå­—èŠ‚è¡¨ç¤º1ä¸ªåƒç´ 		*/
-/*			nWidth[in]: å›¾åƒçš„å®½åº¦										*/
-/*			nHeight[in]: å›¾åƒçš„é«˜åº¦										*/
-/*			pResult[out]: è½¦ç‰Œè¯†åˆ«ç»“æœæ•°ç»„, è°ƒç”¨æ–¹å¼€è¾ŸpResult[nResultNum]å†…å­˜*/
-/*			nResultNum[in,out]: in æœ€å¤§å€™é€‰è½¦ç‰Œä¸ªæ•°ï¼Œout è¯†åˆ«å‡ºçš„è½¦ç‰Œä¸ªæ•°*/
-/*			prcRange[in]: æŒ‡å®šè¯†åˆ«èŒƒå›´									*/
+/*			pbyBits[in]: Ö¸ÏòÄÚ´æÍ¼ÏñÊı¾İµÄÖ¸Õë£¬3¸ö×Ö½Ú±íÊ¾1¸öÏñËØ		*/
+/*			nWidth[in]: Í¼ÏñµÄ¿í¶È										*/
+/*			nHeight[in]: Í¼ÏñµÄ¸ß¶È										*/
+/*			pResult[out]: ³µÅÆÊ¶±ğ½á¹ûÊı×é, µ÷ÓÃ·½¿ª±ÙpResult[nResultNum]ÄÚ´æ*/
+/*			nResultNum[in,out]: in ×î´óºòÑ¡³µÅÆ¸öÊı£¬out Ê¶±ğ³öµÄ³µÅÆ¸öÊı*/
+/*			prcRange[in]: Ö¸¶¨Ê¶±ğ·¶Î§									*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_RecogImage(const unsigned char *pbyBits, int nWidth, int nHeight, TH_PlateIDResult *pResult,
 	int *nResultNum, const TH_RECT *prcRange, TH_PlateIDCfg *pPlateConfig);
 
 /************************************************************************/
-/* TH_EvaluateCarColor: è¯†åˆ«è½¦çš„é¢œè‰²									*/
+/* TH_EvaluateCarColor: Ê¶±ğ³µµÄÑÕÉ«									*/
 /*		Parameters:														*/
-/*			pbyBits[in]: æŒ‡å‘å†…å­˜å›¾åƒæ•°æ®çš„æŒ‡é’ˆï¼Œ3ä¸ªå­—èŠ‚è¡¨ç¤º1ä¸ªåƒç´ 		*/
-/*			nWidth[in]: å›¾åƒçš„å®½åº¦										*/
-/*			nHeight[in]: å›¾åƒçš„é«˜åº¦										*/
-/*			pResult[out]: è½¦ç‰Œè¯†åˆ«ç»“æœæ•°ç»„, è°ƒç”¨æ–¹å¼€è¾ŸpResult[nResultNum]å†…å­˜*/
-/*			nResultNum[in,out]: in æœ€å¤§å€™é€‰è½¦ç‰Œä¸ªæ•°ï¼Œout è¯†åˆ«å‡ºçš„è½¦ç‰Œä¸ªæ•°*/
-/*			prcRange[in]: æŒ‡å®šè¯†åˆ«èŒƒå›´									*/
+/*			pbyBits[in]: Ö¸ÏòÄÚ´æÍ¼ÏñÊı¾İµÄÖ¸Õë£¬3¸ö×Ö½Ú±íÊ¾1¸öÏñËØ		*/
+/*			nWidth[in]: Í¼ÏñµÄ¿í¶È										*/
+/*			nHeight[in]: Í¼ÏñµÄ¸ß¶È										*/
+/*			pResult[out]: ³µÅÆÊ¶±ğ½á¹ûÊı×é, µ÷ÓÃ·½¿ª±ÙpResult[nResultNum]ÄÚ´æ*/
+/*			nResultNum[in,out]: in ×î´óºòÑ¡³µÅÆ¸öÊı£¬out Ê¶±ğ³öµÄ³µÅÆ¸öÊı*/
+/*			prcRange[in]: Ö¸¶¨Ê¶±ğ·¶Î§									*/
 /*		Return Value: int(ERR_Code)										*/
-/*		TH_EvaluateCarColorç´§æ¥TH_RecogImageä¹‹åè°ƒç”¨ï¼Œä¿æŒå‚æ•°ä¸å˜		*/
+/*		TH_EvaluateCarColor½ô½ÓTH_RecogImageÖ®ºóµ÷ÓÃ£¬±£³Ö²ÎÊı²»±ä		*/
 /************************************************************************/
 int __stdcall TH_EvaluateCarColor(const unsigned char *pbyBits, int nWidth, int nHeight, TH_PlateIDResult *pResult,
 	int *nResultNum, const TH_RECT *prcRange, TH_PlateIDCfg *pPlateConfig);
 
 /************************************************************************/
-/* TH_SetImageFormat: è®¾ç½®å›¾åƒæ ¼å¼										*/
+/* TH_SetImageFormat: ÉèÖÃÍ¼Ïñ¸ñÊ½										*/
 /*		Parameters:														*/
-/*			cImageFormat[in]: å›¾åƒæ ¼å¼									*/
-/*			bVertFlip[in]: æ˜¯å¦é¢ å€’										*/
-/*			bDwordAligned[in]: æ˜¯å¦4å­—èŠ‚å¯¹é½							*/
+/*			cImageFormat[in]: Í¼Ïñ¸ñÊ½									*/
+/*			bVertFlip[in]: ÊÇ·ñµßµ¹										*/
+/*			bDwordAligned[in]: ÊÇ·ñ4×Ö½Ú¶ÔÆë							*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetImageFormat( unsigned char cImageFormat, unsigned char bVertFlip, unsigned char bDwordAligned, TH_PlateIDCfg *pPlateConfig );
 
 /************************************************************************/
-/* TH_SetEnabledPlateFormat: è®¾ç½®æ”¯æŒçš„è½¦ç‰Œç±»å‹							*/
+/* TH_SetEnabledPlateFormat: ÉèÖÃÖ§³ÖµÄ³µÅÆÀàĞÍ							*/
 /*		Parameters:														*/
-/*			dFormat[in]: è½¦ç‰Œç±»å‹å¼€å…³ï¼Œä¾‹å¦‚PARAM_INDIVIDUAL_ON			*/
+/*			dFormat[in]: ³µÅÆÀàĞÍ¿ª¹Ø£¬ÀıÈçPARAM_INDIVIDUAL_ON			*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetEnabledPlateFormat(unsigned int dFormat, TH_PlateIDCfg *pPlateConfig);
 
 /************************************************************************/
-/* TH_SetProvinceOrder: è®¾ç½®çœä»½å­—ç¬¦ä¸²									*/
+/* TH_SetProvinceOrder: ÉèÖÃÊ¡·İ×Ö·û´®									*/
 /*		Parameters:														*/
-/*			szProvince[in]: é»˜è®¤çœä»½å­—ç¬¦ä¸²ï¼Œä¾‹å¦‚"äº¬æ´¥å†€"ï¼Œæœ€å¤šæ”¯æŒ8ä¸ªçœä»½*/
+/*			szProvince[in]: Ä¬ÈÏÊ¡·İ×Ö·û´®£¬ÀıÈç"¾©½ò¼½"£¬×î¶àÖ§³Ö8¸öÊ¡·İ*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetProvinceOrder( char* szProvince, TH_PlateIDCfg *pPlateConfig);
 
 /************************************************************************/
-/* TH_SetRecogThreshold: è®¾ç½®è¯†åˆ«é˜ˆå€¼									*/
+/* TH_SetRecogThreshold: ÉèÖÃÊ¶±ğãĞÖµ									*/
 /*		Parameters:														*/
-/*			nPlateLocate_Th[in]: 0 - 9		--   7: é»˜è®¤é˜ˆå€¼			*/
-/*					nOCR_Th[in]: 0 - 9		--   5: é»˜è®¤é˜ˆå€¼			*/
-/*				0: æœ€å®½æ¾çš„é˜ˆå€¼											*/
-/*				9:æœ€ä¸¥æ ¼çš„é˜ˆå€¼											*/
+/*			nPlateLocate_Th[in]: 0 - 9		--   7: Ä¬ÈÏãĞÖµ			*/
+/*					nOCR_Th[in]: 0 - 9		--   5: Ä¬ÈÏãĞÖµ			*/
+/*				0: ×î¿íËÉµÄãĞÖµ											*/
+/*				9:×îÑÏ¸ñµÄãĞÖµ											*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetRecogThreshold( unsigned char nPlateLocate_Th, unsigned char nOCR_Th, TH_PlateIDCfg *pPlateCfg);
 
-//æ£€æŸ¥å·¥ä½œè¿‡ç¨‹ä¸­æœ€å°çš„å‰©ä½™å†…å­˜ï¼Œå¦‚æœå‡ºç°è´Ÿæ•°ï¼Œåˆ™éœ€è¦å¢åŠ ç»™å®šçš„åˆå§‹å†…å­˜
+//¼ì²é¹¤×÷¹ı³ÌÖĞ×îĞ¡µÄÊ£ÓàÄÚ´æ£¬Èç¹û³öÏÖ¸ºÊı£¬ÔòĞèÒªÔö¼Ó¸ø¶¨µÄ³õÊ¼ÄÚ´æ
 int __stdcall TH_CheckMinFreeMemory( int *pnMinFreeSRAM, int *pnMinFreeSDRAM, TH_PlateIDCfg *pPlateCfg);
 
 /************************************************************************/
-/* åŠŸèƒ½: è·å–ç‰ˆæœ¬å·														*/
-/*		Parametersï¼šæ— 													*/
-/*		è¿”å›å€¼: å­—ç¬¦ä¸² æ ¼å¼ï¼šä¸»ç‰ˆæœ¬å·.å‰¯ç‰ˆæœ¬å·.ä¿®è®¢å·.ç¼–è¯‘å·			*/
-/*				ä¸ç”¨é‡Šæ”¾è¯¥æŒ‡é’ˆã€‚										*/
+/* ¹¦ÄÜ: »ñÈ¡°æ±¾ºÅ														*/
+/*		Parameters£ºÎŞ													*/
+/*		·µ»ØÖµ: ×Ö·û´® ¸ñÊ½£ºÖ÷°æ±¾ºÅ.¸±°æ±¾ºÅ.ĞŞ¶©ºÅ.±àÒëºÅ			*/
+/*				²»ÓÃÊÍ·Å¸ÃÖ¸Õë¡£										*/
 /************************************************************************/
 const char * __stdcall TH_GetVersion();
 
 /************************************************************************/
-/* åŠŸèƒ½: è·å–åŠ å¯†é”ID, åŠ å¯†é”IDæ˜¯8å­—èŠ‚å”¯ä¸€IDï¼Œ							*/
-/*		è°ƒç”¨æ­¤å‡½æ•°å‰éœ€è¦è°ƒç”¨TH_InitPlateIDSDK							*/
-/*		Parametersï¼šå­˜åœ¨å”¯ä¸€IDæ—¶ï¼ŒID1æ˜¯å‰4å­—èŠ‚,ID2æ˜¯åå››å­—èŠ‚			*/
-/*		è¿”å›å€¼: 0-æœ‰å”¯ä¸€ID												*/
-/*				1-æ— å”¯ä¸€ID												*/
+/* ¹¦ÄÜ: »ñÈ¡¼ÓÃÜËøID, ¼ÓÃÜËøIDÊÇ8×Ö½ÚÎ¨Ò»ID£¬							*/
+/*		µ÷ÓÃ´Ëº¯ÊıÇ°ĞèÒªµ÷ÓÃTH_InitPlateIDSDK							*/
+/*		Parameters£º´æÔÚÎ¨Ò»IDÊ±£¬ID1ÊÇÇ°4×Ö½Ú,ID2ÊÇºóËÄ×Ö½Ú			*/
+/*		·µ»ØÖµ: 0-ÓĞÎ¨Ò»ID												*/
+/*				1-ÎŞÎ¨Ò»ID												*/
 /************************************************************************/
 int __stdcall TH_GetKeyID(unsigned int* ID1, unsigned int* ID2);
 
 /************************************************************************/
-/* åŠŸèƒ½: è·å–åŠ å¯†é”è·¯æ•°ä¿¡æ¯ï¼Œ											*/
-/*		ä½¿ç”¨TH_InitPlateIDSDKå‰è°ƒç”¨æ­¤å‡½æ•°								*/
-/*		Parametersï¼šnMaxThread[out]:									*/
-/*		è¿”å›å€¼:  int(ERR_Code)											*/
+/* ¹¦ÄÜ: »ñÈ¡¼ÓÃÜËøÂ·ÊıĞÅÏ¢£¬											*/
+/*		Ê¹ÓÃTH_InitPlateIDSDKÇ°µ÷ÓÃ´Ëº¯Êı								*/
+/*		Parameters£ºnMaxThread[out]:									*/
+/*		·µ»ØÖµ:  int(ERR_Code)											*/
 /************************************************************************/
 int __stdcall TH_GetKeyMaxThread(int* nMaxThread);
 
 
 /************************************************************************/
-/* åŠŸèƒ½: è®¾ç½®å½“å‰è¯†åˆ«çš„å¯¹æ¯”åº¦é˜ˆå€¼										*/
-/*		Parametersï¼šnContrast[int]:										*/
-/*		å¯¹æ¯”åº¦æŒ‡æ•° nContrast[in]: 0 - 9									*/
-/*		æœ€æ¨¡ç³Šæ—¶è®¾ä¸º1;æœ€æ¸…æ™°æ—¶è®¾ä¸º9;è‡ªåŠ¨æ¢æµ‹è®¾ä¸º0;é»˜è®¤å€¼ä¸º0				*/
-/*		è¿”å›å€¼:  int(ERR_Code)											*/
+/* ¹¦ÄÜ: ÉèÖÃµ±Ç°Ê¶±ğµÄ¶Ô±È¶ÈãĞÖµ										*/
+/*		Parameters£ºnContrast[int]:										*/
+/*		¶Ô±È¶ÈÖ¸Êı nContrast[in]: 0 - 9									*/
+/*		×îÄ£ºıÊ±ÉèÎª1;×îÇåÎúÊ±ÉèÎª9;×Ô¶¯Ì½²âÉèÎª0;Ä¬ÈÏÖµÎª0				*/
+/*		·µ»ØÖµ:  int(ERR_Code)											*/
 /************************************************************************/
 int __stdcall TH_SetContrast( unsigned char nContrast, TH_PlateIDCfg *pPlateCfg );
 																			
 
 
 /************************************************************************/
-/* TH_SetEnableCarTypeClassify: è®¾ç½®æ˜¯å¦è½¦è¾†ç±»å‹åˆ¤åˆ«					*/
+/* TH_SetEnableCarTypeClassify: ÉèÖÃÊÇ·ñ³µÁ¾ÀàĞÍÅĞ±ğ					*/
 /*		Parameters:														*/
-/*			bCarTypeClass[in]: true:è½¦å‹åˆ†ç±»;							*/
-/*								false:ä¸è¿›è¡Œè½¦å‹åˆ†ç±»					*/
+/*			bCarTypeClass[in]: true:³µĞÍ·ÖÀà;							*/
+/*								false:²»½øĞĞ³µĞÍ·ÖÀà					*/
 /*		Return Value: int(ERR_Code)										*/
-/*		æ”¯æŒæ ¼å¼: ImageFormatBGR, ImageFormatRGB,ImageFormatYUV422,
+/*		Ö§³Ö¸ñÊ½: ImageFormatBGR, ImageFormatRGB,ImageFormatYUV422,
 				ImageFormatUYVY,ImageFormatNV21*/
 /************************************************************************/
 int __stdcall TH_SetEnableCarTypeClassify( unsigned char bCarTypeClass, TH_PlateIDCfg *pPlateCfg);
 
 
 /************************************************************************/
-/* TH_SetEnableCarLogo: è®¾ç½®æ˜¯å¦è½¦æ ‡è¯†åˆ«								*/
+/* TH_SetEnableCarLogo: ÉèÖÃÊÇ·ñ³µ±êÊ¶±ğ								*/
 /*		Parameters:														*/
-/*			bCarLogo[in]: true:è½¦æ ‡è¯†åˆ«;								*/
-/*								false:ä¸è¿›è¡Œè½¦æ ‡è¯†åˆ«					*/
+/*			bCarLogo[in]: true:³µ±êÊ¶±ğ;								*/
+/*								false:²»½øĞĞ³µ±êÊ¶±ğ					*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetEnableCarLogo( unsigned char bCarLogo, TH_PlateIDCfg *pPlateCfg);
 
 /************************************************************************/
-/* TH_SetEnableCarWidth: è®¾ç½®æ˜¯å¦æµ‹é‡è½¦è¾†å®½åº¦							*/
+/* TH_SetEnableCarWidth: ÉèÖÃÊÇ·ñ²âÁ¿³µÁ¾¿í¶È							*/
 /*		Parameters:														*/
-/*			bCarLogo[in]: true:æµ‹é‡è½¦è¾†å®½åº¦;							*/
-/*							false:ä¸æµ‹é‡è½¦è¾†å®½åº¦						*/
+/*			bCarLogo[in]: true:²âÁ¿³µÁ¾¿í¶È;							*/
+/*							false:²»²âÁ¿³µÁ¾¿í¶È						*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetEnableCarWidth( unsigned char bCarWidth, TH_PlateIDCfg *pPlateCfg);
@@ -397,11 +419,11 @@ int __stdcall TH_SetEnableCarWidth( unsigned char bCarWidth, TH_PlateIDCfg *pPla
 int __stdcall TH_SetReserveInfo(unsigned char* pSN);
 int __stdcall TH_SetTFInfo(int Num, char *pTF);
 
-// TH_SetDayNightMode: V4.3.13.0ä»¥åå‡½æ•°æ— å®é™…æ„ä¹‰ï¼Œä¸ºä¿è¯å…¼å®¹æ€§ä¿ç•™æ­¤å‡½æ•°
+// TH_SetDayNightMode: V4.3.13.0ÒÔºóº¯ÊıÎŞÊµ¼ÊÒâÒå£¬Îª±£Ö¤¼æÈİĞÔ±£Áô´Ëº¯Êı
 int __stdcall TH_SetDayNightMode( unsigned char bIsNight, TH_PlateIDCfg *pPlateConfig);
 
 /************************************************************************/
-/* TH_SetVideoModeOutPutPosRatio: è®¾ç½®è§†é¢‘æ¨¡å¼è½¦ç‰Œè¾“å‡ºä½ç½®ç³»æ•°				*/
+/* TH_SetVideoModeOutPutPosRatio: ÉèÖÃÊÓÆµÄ£Ê½³µÅÆÊä³öÎ»ÖÃÏµÊı				*/
 /*		Parameters:														*/
 /*			ratio[in]: (0.1, 0.9);										*/
 /*		Return Value: int(ERR_Code)										*/
@@ -409,37 +431,37 @@ int __stdcall TH_SetDayNightMode( unsigned char bIsNight, TH_PlateIDCfg *pPlateC
 int __stdcall TH_SetVideoModeOutPutPosRatio(float ratio);
 
 /************************************************************************/
-/* TH_GetVehicleModelName: è¾“å‡ºè½¦å‹å­—ç¬¦ä¸²ï¼Œåœ¨è°ƒç”¨TH_RecogImageåè°ƒç”¨è¯¥å‡½æ•°*/
+/* TH_GetVehicleModelName: Êä³ö³µĞÍ×Ö·û´®£¬ÔÚµ÷ÓÃTH_RecogImageºóµ÷ÓÃ¸Ãº¯Êı*/
 /*		Parameters:														*/
-/*			nModel[in]: è½¦å‹ç±»å‹å€¼ï¼ŒTH_PlateIDResultç»“æ„ä½“ä¸­çš„nCarModel;*/
+/*			nModel[in]: ³µĞÍÀàĞÍÖµ£¬TH_PlateIDResult½á¹¹ÌåÖĞµÄnCarModel;*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 const char *  __stdcall TH_GetVehicleModelName(int nModel);
 
 /************************************************************************/
-/* TH_SetEnableLeanCorrection: è®¾ç½®æ˜¯å¦æ‰“å¼€å€¾æ–œæ ¡æ­£								*/
+/* TH_SetEnableLeanCorrection: ÉèÖÃÊÇ·ñ´ò¿ªÇãĞ±Ğ£Õı								*/
 /*		Parameters:														*/
-/*			bLeanCorrection[in]: true:æ‰“å¼€å€¾æ–œæ ¡æ­£;								*/
-/*								 false:å…³é—­å€¾æ–œæ ¡æ­£					*/
+/*			bLeanCorrection[in]: true:´ò¿ªÇãĞ±Ğ£Õı;								*/
+/*								 false:¹Ø±ÕÇãĞ±Ğ£Õı					*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetEnableLeanCorrection( unsigned char bLeanCorrection, TH_PlateIDCfg *pPlateCfg);
 
 /************************************************************************/
-/* TH_SetEnableShadow: è®¾ç½®æ˜¯å¦æ‰“å¼€é˜´é˜³ç‰Œè¯†åˆ«								*/
+/* TH_SetEnableShadow: ÉèÖÃÊÇ·ñ´ò¿ªÒõÑôÅÆÊ¶±ğ								*/
 /*		Parameters:														*/
-/*			bShadow[in]: true:æ‰“å¼€é˜´é˜³ç‰Œ;								*/
-/*						 false:å…³é—­é˜´é˜³ç‰Œ					*/
+/*			bShadow[in]: true:´ò¿ªÒõÑôÅÆ;								*/
+/*						 false:¹Ø±ÕÒõÑôÅÆ					*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetEnableShadow( unsigned char bShadow, TH_PlateIDCfg *pPlateCfg);
 
 /************************************************************************/
-/* TH_GetLicenseNum: è·å–ç½‘ç»œåŠ å¯†é”è®¸å¯æ•°é‡								*/
+/* TH_GetLicenseNum: »ñÈ¡ÍøÂç¼ÓÃÜËøĞí¿ÉÊıÁ¿								*/
 /*		Parameters:														*/
-/*			pnTotalNum[out]:	è®¸å¯æ€»æ•°;								*/
-/*			pnRemainingNum1[out]:	æœåŠ¡å™¨ä¸€å‰©ä½™è®¸å¯æ•°					*/
-/*			pnRemainingNum2[out]:	æœåŠ¡å™¨äºŒå‰©ä½™è®¸å¯æ•°					*/
+/*			pnTotalNum[out]:	Ğí¿É×ÜÊı;								*/
+/*			pnRemainingNum1[out]:	·şÎñÆ÷Ò»Ê£ÓàĞí¿ÉÊı					*/
+/*			pnRemainingNum2[out]:	·şÎñÆ÷¶şÊ£ÓàĞí¿ÉÊı					*/
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_GetLicenseNum(int *pnTotalNum, int *pnRemainingNum1, int *pnRemainingNum2);
@@ -453,6 +475,9 @@ int __stdcall TH_GetLicenseNum(int *pnTotalNum, int *pnRemainingNum1, int *pnRem
 /*		Return Value: int(ERR_Code)										*/
 /************************************************************************/
 int __stdcall TH_SetServer(const char *pServer1, const char *pServer2);
+
+//ÉèÖÃÊÚÈ¨ÎÄ¼şÂ·¾¶
+int __stdcall TH_SetFilePath(const char *filePath);
 
 #ifdef __cplusplus
 }

@@ -1,3 +1,18 @@
+// ***************************************************************
+//  TH_ErrorDef.h   version:  4.0     date: 2010.4.12
+//  -------------------------------------------------------------
+//  Çå»ª´óÑ§ÖÇÄÜÍ¼ÎÄÐÅÏ¢´¦ÀíÑÐ¾¿ÊÒ¡£°æÈ¨ËùÓÐ¡£
+//  -------------------------------------------------------------
+//  Center for Intelligent Image and Document Information Processing
+//  -------------------------------------------------------------
+//  Copyright (C) 2007 - All Rights Reserved
+// ***************************************************************
+//   Author: Zhou Jian
+// ***************************************************************
+//		Revision history:
+//			2010.4.12: v4.0, ¶¨ÒåSDKµÄ³ö´íÐÅÏ¢
+// ***************************************************************
+
 #if !defined(__TH_ERRORDEF_INCLUDE_H__)
 #define __TH_ERRORDEF_INCLUDE_H__
 
@@ -10,30 +25,43 @@ extern "C" {
 #endif
 
 // The errors that may occur during the use of the SDK
-#define		TH_ERR_NONE								0		//æ²¡æœ‰é”™è¯¯
-#define		TH_ERR_GENERIC							1		//çœä»½è®¾ç½®é”™è¯¯
-#define		TH_ERR_MEMORYALLOC						2		//å†…å­˜åˆ†é…é”™è¯¯
-#define		TH_ERR_INVALIDFORMAT					7		//ä¸æ”¯æŒçš„å›¾åƒæ ¼å¼
-#define		TH_ERR_INVALIDWIDTH						8		//å›¾åƒå®½åº¦å¿…é¡»æ˜¯8çš„æ•´æ•°å€
-#define     TH_ERR_THREADLIMIT						20		//è°ƒç”¨çº¿ç¨‹æ•°è¶…è¿‡è§„å®šæ•°é‡
-#define		TH_ERR_NODOG							-1		//æ²¡æœ‰æ‰¾åˆ°åŠ å¯†ç‹—
-#define		TH_ERR_CARTYPEERROR						-2		//è½¦è¾†ç±»åž‹è¯†åˆ«æ¨¡å—é”™è¯¯
-#define		TH_ERR_READDOG							-3		//è¯»å–åŠ å¯†ç‹—å‡ºé”™
-#define		TH_ERR_INVALIDDOG						-4		//ä¸æ˜¯åˆæ³•çš„åŠ å¯†ç‹—
-#define		TH_ERR_INVALIDUSER						-6		//ä¸æ˜¯åˆæ³•çš„åŠ å¯†ç‹—ç”¨æˆ·
-#define		TH_ERR_MOUDLEERROR						-7		//è½¦æ ‡è¯†åˆ«æ¨¡å—é”™è¯¯
-#define     TH_ERR_INVALIDMOUDLE					-8		//æ¨¡å—æ²¡æœ‰åˆæ³•æŽˆæƒ
-#define     TH_ERR_BUFFULL							-9		//è¯†åˆ«ç¼“å†²åŒºå·²æ»¡
-#define		TH_ERR_INITVEHDETECT					-10		//åˆå§‹åŒ–è½¦è¾†æ£€æµ‹æ¨¡å—é”™è¯¯
-#define		TH_ERR_VEHDETECT						-11		//è½¦è¾†æ£€æµ‹æ¨¡å—é”™è¯¯
-#define     TH_ERR_INVALIDCALL						-99		//éžæ³•è°ƒç”¨
-#define     TH_ERR_EXCEPTION						-100	//å¼‚å¸¸
-#define		TH_ERR_INITLIMIT						21		//åˆå§‹åŒ–æ¬¡æ•°è¶…è¿‡åŠ å¯†ç‹—è®¸å¯ 
-#define		TH_ERR_MULTIINSTANCE					22		//è½¦ç‰Œè¯†åˆ«å®žä¾‹è¶…é™åˆ¶
+#define		TH_ERR_NONE								0		//Ã»ÓÐ´íÎó
+#define		TH_ERR_GENERIC							1		//Ê¡·ÝÉèÖÃ´íÎó
+#define		TH_ERR_MEMORYALLOC						2		//ÄÚ´æ·ÖÅä´íÎó
+#define		TH_ERR_INVALIDFORMAT					7		//²»Ö§³ÖµÄÍ¼Ïñ¸ñÊ½
+#define		TH_ERR_INVALIDWIDTH						8		//Í¼Ïñ¿í¶È±ØÐëÊÇ8µÄÕûÊý±¶
+#define     TH_ERR_THREADLIMIT						20		//µ÷ÓÃÏß³ÌÊý³¬¹ý¹æ¶¨ÊýÁ¿
+#define		TH_ERR_NODOG							-1		//Ã»ÓÐÕÒµ½¼ÓÃÜ¹·
+#define		TH_ERR_CARTYPEERROR						-2		//³µÁ¾ÀàÐÍÊ¶±ðÄ£¿é´íÎó
+#define		TH_ERR_READDOG							-3		//¶ÁÈ¡¼ÓÃÜ¹·³ö´í
+#define		TH_ERR_INVALIDDOG						-4		//²»ÊÇºÏ·¨µÄ¼ÓÃÜ¹·
+#define		TH_ERR_INVALIDUSER						-6		//²»ÊÇºÏ·¨µÄ¼ÓÃÜ¹·ÓÃ»§
+#define		TH_ERR_MOUDLEERROR						-7		//³µ±êÊ¶±ðÄ£¿é´íÎó
+#define     TH_ERR_INVALIDMOUDLE					-8		//Ä£¿éÃ»ÓÐºÏ·¨ÊÚÈ¨
+#define     TH_ERR_BUFFULL							-9		//Ê¶±ð»º³åÇøÒÑÂú
+#define		TH_ERR_INITVEHDETECT					-10		//³õÊ¼»¯³µÁ¾¼ì²âÄ£¿é´íÎó
+#define		TH_ERR_VEHDETECT						-11		//³µÁ¾¼ì²âÄ£¿é´íÎó
+#define     TH_ERR_INVALIDCALL						-99		//·Ç·¨µ÷ÓÃ
+#define     TH_ERR_EXCEPTION						-100	//Òì³£
+#define		TH_ERR_INITLIMIT						21		//³õÊ¼»¯´ÎÊý³¬¹ý¼ÓÃÜ¹·Ðí¿É 
+#define		TH_ERR_MULTIINSTANCE					22		//³µÅÆÊ¶±ðÊµÀý³¬ÏÞÖÆ
 
-//ä»¥ä¸‹ä¸ºè½¦åž‹è¯†åˆ«ç®—æ³•è¿”å›žé”™è¯¯
-#define		TH_ERR_CARMODEL_PLATELOC_ERR			1001	//è½¦ç‰Œåæ ‡ä¿¡æ¯å¼‚å¸¸
-#define     TH_ERR_READMODEL						1002	//è¯»è½¦åž‹æ¨¡åž‹å¼‚å¸¸
+//µ¥»ú°æÈíÊÚÈ¨Ïà¹Ø´íÎóÖµ
+#define     WTSL_ERR_PATH							100     //ÊÚÈ¨¿âÂ·¾¶´íÎó
+#define		WTSL_ERR_ENCRY_FAILED					101     //Î´ÊÚÈ¨²úÆ·
+#define		WTSL_ERR_LOCK_FIND						102     //ÕÒËøÊ§°Ü
+#define		WTSL_ERR_LOCK_OPEN						103     //´ò¿ªËøÊ§°Ü
+#define		WTSL_ERR_LOCK_READ						104     //¶ÁÈ¡Ê§°Ü
+#define		WTSL_ERR_LOCK_WRITE						105     //Ð´Ê§°Ü
+#define		WTSL_ERR_TIME_LIMITED					106     //³¬Ê±
+#define		WTSL_ERR_PROCESS_NUM_LIMITED			107     //½ø³ÌÒÑÂú
+#define		WTSL_ERR_IP_OR_MAC						108     //IP MAC´íÎó
+#define		WTSL_ERR_HARDINFO_CMP_FALIED			109     //Ó²¼þÐÅÏ¢²»Æ¥Åä
+#define		WTSL_ERR_COMMUNICATION					111     //soapÍ¨ÐÅ´íÎó
+
+//ÒÔÏÂÎª³µÐÍÊ¶±ðËã·¨·µ»Ø´íÎó
+#define		TH_ERR_CARMODEL_PLATELOC_ERR			1001	//³µÅÆ×ø±êÐÅÏ¢Òì³£
+#define     TH_ERR_READMODEL						1002	//¶Á³µÐÍÄ£ÐÍÒì³£
 
 #ifdef __cplusplus
 }	// extern "C"
